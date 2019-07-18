@@ -1,0 +1,23 @@
+{
+  "exercise1" : {
+    "name": "Barbell Bench Press",
+    "type": "Compound",
+    "image": "./images/bench-press.jpg",
+    "link": "https://www.bodybuilding.com/exercises/barbell-bench-press-medium-grip",
+    "muscle-groups": "Chest, Triceps, Shoulders"
+  },
+  "exercise2" : {
+    "name": "Dips",
+    "type": "Compound",
+    "image": "./images/dips-triceps.jpg",
+    "link": "https://www.bodybuilding.com/exercises/dips-triceps-version",
+    "muscle-groups": "Chest, Triceps, Shoulders"
+  },
+  "exercise3" : {
+    "name": "Barbell Bench Press",
+    "type": "Isolation",
+    "image": "./images/triceps-pushdown.jpg",
+    "link": "https://www.bodybuilding.com/exercises/triceps-pushdown-v-bar-attachment",
+    "muscle-groups": "Triceps"
+  }
+}
