@@ -1,14 +1,21 @@
 import React from 'react';
+import firebase from 'firebase/app';
+import 'firebase/auth';
 import {BrowserRouter, Route, Redirect, Switch} from 'react-router-dom';
 
 import './App.scss';
 
-import Auth from '../Auth/Auth';
-import MyNavbar from '../MyNavbar/MyNavbar';
-import MyDashboard from '../MyDashboard/MyDashboard';
-import ExerciseDictionary from '../ExerciseDictionary/ExerciseDictionary';
-import CreateNewWorkout from '../CreateNewWorkout/CreateNewWorkout';
-import SubmitWorkout from '../SubmitWorkout/SubmitWorkout';
+import Auth from '../components/Auth/Auth';
+import MyNavbar from '../components/MyNavbar/MyNavbar';
+import MyDashboard from '../components/MyDashboard/MyDashboard';
+import ExerciseDictionary from '../components/ExerciseDictionary/ExerciseDictionary';
+import CreateNewWorkout from '../components/CreateNewWorkout/CreateNewWorkout';
+import SubmitWorkout from '../components/SubmitWorkout/SubmitWorkout';
+import firebaseConnection from '../helpers/data/connection';
+
+firebaseConnection();
+
+
 
 const PublicRoute = ({ component: Component, authed, ...rest}) => {
   const routeChecker = props => ( authed === false
@@ -31,6 +38,20 @@ class App extends React.Component {
   state = {
     authed: false,
   }
+
+  componentDidMount() {
+    this.removeListener = firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({authed: true});
+      } else {
+        this.setState({authed: false})
+      }
+    })
+  };
+
+  componentWillUnmount() {
+    this.removeListener();
+  };
 
   render() {
     const { authed } = this.state;
