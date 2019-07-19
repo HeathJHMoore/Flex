@@ -1,27 +1,30 @@
 import React from 'react';
 
+import TableRow from '../TableRow/TableRow';
 import exerciseData from '../../helpers/data/exerciseData';
 
 class Workout extends React.Component {
 
   state = {
-    workoutExercises : ''
+    workoutExercises : []
   }
 
   componentDidMount() {
     console.error('hey from mount')
     exerciseData.getExercisesByWorkoutId(this.props.userWorkout.id)
-      .then((workoutExercises) => {
-        console.error(workoutExercises, 'look here please');
-        const newWorkoutExercises = [...workoutExercises];
-        this.setState({workoutExercises : newWorkoutExercises});
-      })
+      .then(response => this.setState({workoutExercises: response}))
       .catch(err => console.error(err))
   }
 
   render() {
+    const exerciseRows = this.state.workoutExercises.map((workoutExercise) => (
+      <TableRow key={workoutExercise.id} workoutExercise={workoutExercise} />
+    ))
     return (
-      <p>This is A Workout</p>
+      <div class="container">
+      {/* // i will eventually put in a bootstrap table here */}
+      {exerciseRows}
+      </div>
     )
   }
 }

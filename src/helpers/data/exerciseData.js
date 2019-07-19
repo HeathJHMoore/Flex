@@ -6,8 +6,12 @@ const databaseURL = apiKeys.firebaseKeys.databaseURL;
 const getExercises = () => new Promise((resolve, reject) => {
   axios.get(`${databaseURL}/ExerciseDictionary.json`)
     .then((res) => {
-      console.error(res.data);
-      resolve(res.data);
+      const exercises = [];
+      Object.keys(res.data).map((key) => {
+        res.data[key].id = key;
+        exercises.push(res.data[key]);
+      })
+      resolve(exercises);
     })
     .catch(err => reject(err))
 })
@@ -20,7 +24,18 @@ const getExercisesByWorkoutId = (workoutId) => new Promise((resolve, reject) => 
         res.data[key].id = key;
         workoutExercises.push(res.data[key]);
       })
-      resolve(workoutExercises);
+      getExercises()
+        .then((exercises) => {
+          workoutExercises.forEach((workoutExercise) => {
+            exercises.forEach((exercise) => {
+              if (exercise.id === workoutExercise.exerciseId) {
+                workoutExercise.name = exercise.name;
+              }
+            })
+          });
+          resolve(workoutExercises);
+        })
+        .catch(err => console.error(err))
     })
     .catch(err => reject(err))
 })
