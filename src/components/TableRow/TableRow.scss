@@ -1,0 +1,13 @@
+.tableRow {
+  background-color: rgb(212,227,253);
+  color: black;
+}
+
+.rowTitle {
+  background-color: rgb(146,146,146);
+}
+
+.tableRow:nth-child() {
+  background-color: pink;
+}
+
