@@ -27,9 +27,16 @@ class MyWorkouts extends React.Component {
     ))
 
     return (
-      <div className="row d-flex justify-content-center">
+      <div className="row"> {/* this is new stuff */}
+      <div className="col-12">
       {workoutBuilder}
       </div>
+      </div>
+
+      // this is original code
+      // <div className="row d-flex justify-content-center">
+      // {workoutBuilder}
+      // </div>
     )
   }
 }

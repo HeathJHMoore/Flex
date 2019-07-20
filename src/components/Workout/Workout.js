@@ -31,25 +31,50 @@ class Workout extends React.Component {
     ))
     const submitWorkoutPath = `/SubmitWorkout/:${this.props.userWorkout.id}`
     return (
-      <div class="col-11 col-md-10 mb-4 mt-4 p-0 workoutContainer">
-        <h4 className="tableHeader">{this.props.userWorkout.name}</h4>
-        <div className="container">
-        <table class="table table-bordered table-dark workoutTable">
-          <thead>
-            <tr className="tableColumnTitles">
-              <th scope="col" className="blankSpace"></th>
-              <th scope="col" className="text-center align-middle">Exercise</th>
-              <th scope="col" className="text-center align-middle">Prescribed Repetitions</th>
-              <th scope="col" className="text-center align-middle">Prescribed Weight</th>
-            </tr>
-          </thead>
-          <tbody>
-          {exerciseRows}
-          </tbody>
-        </table>
-        <Link className="btn btn-danger actionButton mb-3" to={submitWorkoutPath}>Record Your Performance</Link>
+      <div className="row justify-content-center">
+        <div class="col-11 mb-4 mt-4 p-0 workoutContainer">
+          <h4 className="tableHeader">{this.props.userWorkout.name}</h4>
+          <div className="row justify-content-center">
+            <div className="col-11">
+              <table class="table table-bordered table-dark workoutTable">
+                <thead>
+                  <tr className="tableColumnTitles">
+                    <th scope="col" className="blankSpace"></th>
+                    <th scope="col" className="text-center align-middle">Exercise</th>
+                    <th scope="col" className="text-center align-middle">Prescribed Repetitions</th>
+                    <th scope="col" className="text-center align-middle">Prescribed Weight</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {exerciseRows}
+                </tbody>
+              </table>
+              <Link className="btn btn-danger actionButton mb-3" to={submitWorkoutPath}>Record Your Performance</Link>
+            </div>
+          </div>
         </div>
       </div>
+      //   <div class="col-11 col-md-10 mb-4 mt-4 p-0 workoutContainer">
+      //   <h4 className="tableHeader">{this.props.userWorkout.name}</h4>
+      //   <div className="container">
+      //   <table class="table table-bordered table-dark workoutTable">
+      //     <thead>
+      //       <tr className="tableColumnTitles">
+      //         <th scope="col" className="blankSpace"></th>
+      //         <th scope="col" className="text-center align-middle">Exercise</th>
+      //         <th scope="col" className="text-center align-middle">Prescribed Repetitions</th>
+      //         <th scope="col" className="text-center align-middle">Prescribed Weight</th>
+      //       </tr>
+      //     </thead>
+      //     <tbody>
+      //     {exerciseRows}
+      //     </tbody>
+      //   </table>
+      //   <Link className="btn btn-danger actionButton mb-3" to={submitWorkoutPath}>Record Your Performance</Link>
+      //   </div>
+      // </div>
+
+
     )
   }
 }

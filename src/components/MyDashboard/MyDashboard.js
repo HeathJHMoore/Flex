@@ -6,7 +6,11 @@ import MyWorkouts from '../MyWorkouts/MyWorkouts';
 class MyDashboard extends React.Component {
    render() {
     return (
-      <div className="text-center">
+      // <div className="text-center">
+      // <Link className="btn btn-danger mt-2 actionButton" to="/CreateNewWorkout">Create A New Workout</Link>
+      // <MyWorkouts />
+      // </div>
+      <div className="col-12 text-center">
       <Link className="btn btn-danger mt-2 actionButton" to="/CreateNewWorkout">Create A New Workout</Link>
       <MyWorkouts />
       </div>
