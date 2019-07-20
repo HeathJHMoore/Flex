@@ -1,29 +1,42 @@
 {
   "userWorkoutExercise1" : {
+    "weight" : 75,
+    "repetitions" : "8-8-6",
+    "Date" : "",
+    "isSuccessful" : false,
+    "isCurrent" : true,
+    "workoutId" : "workout1",
+    "exerciseId" : "exercise3",
+    "order" : 2
+  },
+  "userWorkoutExercise2" : {
     "weight" : 115,
     "repetitions" : "8-8-8",
     "Date" : "",
     "isSuccessful" : false,
     "isCurrent" : true,
     "workoutId" : "workout1",
-    "exerciseId" : "exercise1"
+    "exerciseId" : "exercise1",
+    "order" : 1
   },
-  "userWorkoutExercise2" : {
+  "userWorkoutExercise3" : {
     "weight" : 80,
     "repetitions" : "8-8-8",
     "Date" : "",
     "isSuccessful" : false,
     "isCurrent" : true,
     "workoutId" : "workout2",
-    "exerciseId" : "exercise2"
+    "exerciseId" : "exercise2",
+    "order" : 2
   },
-  "userWorkoutExercise3" : {
+  "userWorkoutExercise4" : {
     "weight" : 110,
     "repetitions" : "8-8-8",
     "Date" : "07-11-2019",
     "isSuccessful" : true,
     "isCurrent" : false,
     "workoutId" : "workout1",
-    "exerciseId" : "exercise1"
+    "exerciseId" : "exercise1",
+    "order" : 5
   }
 }
