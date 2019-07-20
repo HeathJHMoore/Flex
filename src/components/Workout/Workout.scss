@@ -1,6 +1,6 @@
 .tableHeader {
   border: solid 1px black;
-  margin-bottom: 0px;
+  margin-bottom: 10px;
   background-color: rgb(2,48,118);
   color: white;
 }
@@ -10,5 +10,17 @@
 }
 
 .blankSpace {
-  background-color: black;
+  background-color: white;
+  border-left: solid 1px white !important;
+  border-top: solid 1px white !important;
+}
+
+.workoutContainer {
+  border: solid 1px black;
+}
+
+@media screen and (max-width: 600px) {
+  .workoutTable {
+    font-size: 12px;
+  }
 }

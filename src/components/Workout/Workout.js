@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import TableRow from '../TableRow/TableRow';
 import exerciseData from '../../helpers/data/exerciseData';
@@ -15,8 +16,11 @@ class Workout extends React.Component {
     console.error('hey from mount')
     exerciseData.getExercisesByWorkoutId(this.props.userWorkout.id)
       .then((response) => {
-        response.sort(function(a, b){return a.order - b.order});
-        this.setState({workoutExercises: response})
+        const currentExercises = response.filter((exercise) => {
+          return exercise.isCurrent === true;
+        });
+        currentExercises.sort(function(a, b){return a.order - b.order});
+        this.setState({workoutExercises: currentExercises})
       })
       .catch(err => console.error(err))
   }
@@ -25,12 +29,12 @@ class Workout extends React.Component {
     const exerciseRows = this.state.workoutExercises.map((workoutExercise) => (
       <TableRow key={workoutExercise.id} workoutExercise={workoutExercise}/>
     ))
+    const submitWorkoutPath = `/SubmitWorkout/:${this.props.userWorkout.id}`
     return (
-      <div class="col-11 col-md-10 m-4">
-        <div className="tableHeader">
-          <h4>{this.props.userWorkout.name}</h4>
-        </div>
-        <table class="table table-bordered table-dark">
+      <div class="col-11 col-md-10 mb-4 mt-4 p-0 workoutContainer">
+        <h4 className="tableHeader">{this.props.userWorkout.name}</h4>
+        <div className="container">
+        <table class="table table-bordered table-dark workoutTable">
           <thead>
             <tr className="tableColumnTitles">
               <th scope="col" className="blankSpace"></th>
@@ -43,6 +47,8 @@ class Workout extends React.Component {
           {exerciseRows}
           </tbody>
         </table>
+        <Link className="btn btn-danger actionButton mb-3" to={submitWorkoutPath}>Record Your Performance</Link>
+        </div>
       </div>
     )
   }

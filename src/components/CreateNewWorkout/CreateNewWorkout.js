@@ -3,7 +3,11 @@ import React from 'react';
 class CreateNewWorkout extends React.Component {
   render() {
     return (
-      <p>This is Create New Workout</p>
+      <div className="container">
+          <label for="newWorkoutName" className="row text-center">Workout Name</label>
+          <input type="text" placeholder="Enter Workout Name Here" id="newWorkoutName" className="row"></input>
+          <button className="btn actionButton">Add An Exercise</button>
+      </div>
     )
   }
 }

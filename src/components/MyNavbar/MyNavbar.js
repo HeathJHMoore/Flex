@@ -33,6 +33,12 @@ class MyNavBar extends React.Component {
     firebase.auth().signOut();
   }  
 
+  closeNav = () => {
+    if (window.screen.width < 600) {
+    this.setState({isOpen: !this.state.isOpen})
+    }
+  }
+
   render() {
     const { authed } = this.props;
     const buildNavbar = () => {
@@ -40,10 +46,10 @@ class MyNavBar extends React.Component {
         return (
           <Nav className="ml-auto" navbar>
           <NavItem>
-            <NavLink tag={RRNavLink} to='/MyDashboard'>My Dashboard</NavLink>
+            <NavLink tag={RRNavLink} to='/MyDashboard' onClick={this.closeNav}>My Dashboard</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink tag={RRNavLink} to='/ExerciseDictionary'>Exercise Dictionary</NavLink>
+            <NavLink tag={RRNavLink} to='/ExerciseDictionary' onClick={this.closeNav}>Exercise Dictionary</NavLink>
           </NavItem>
           <NavItem>
             <NavLink onClick={this.logMeOut}>Logout</NavLink>
@@ -57,7 +63,7 @@ class MyNavBar extends React.Component {
       <div className="MyNavbar">
         <Navbar color="dark" dark expand="md">
           <NavbarBrand href="/">Flex</NavbarBrand>
-          <NavbarToggler onClick={this.toggle} />
+          <NavbarToggler onClick={this.toggle}/>
           <Collapse isOpen={this.state.isOpen} navbar>
            {buildNavbar()}
           </Collapse>

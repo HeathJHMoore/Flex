@@ -16,15 +16,14 @@ class TableRow extends React.Component {
 
   render() {
     const workoutExercise = this.props.workoutExercise;
+    const rowEvenOdd = this.state.isEvenRow ? "tableRowEven" : "tableRowOdd"
+    const rowClassName = "text-center align-middle " + rowEvenOdd;
     return (
       <tr>
             <th scope="row" className="text-center align-middle rowTitle">Exercise {workoutExercise.order}</th>
-            {/* <td {this.state.isEvenRow ? 'className="text-center align-middle tableRowEven"' : 'className="text-center align-middle tableRowOdd"'}>{workoutExercise.name}</td>
-            <td {this.state.isEvenRow ? 'className="text-center align-middle tableRowEven"' : 'className="text-center align-middle tableRowOdd"'}>{workoutExercise.repetitions}</td>
-            <td {this.state.isEvenRow ? 'className="text-center align-middle tableRowEven"' : 'className="text-center align-middle tableRowOdd"'}>{workoutExercise.weight} lbs</td> */}
-            <td className="text-center align-middle tableRow">{workoutExercise.name}</td>
-            <td className="text-center align-middle tableRow">{workoutExercise.repetitions}</td>
-            <td className="text-center align-middle tableRow">{workoutExercise.weight} lbs</td>
+            <td className={rowClassName}>{workoutExercise.name}</td>
+            <td className={rowClassName}>{workoutExercise.repetitions}</td>
+            <td className={rowClassName}>{workoutExercise.weight} lbs</td>
       </tr>
     )
   }
