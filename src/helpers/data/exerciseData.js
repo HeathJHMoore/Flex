@@ -40,4 +40,4 @@ const getExercisesByWorkoutId = (workoutId) => new Promise((resolve, reject) => 
     .catch(err => reject(err))
 })
 
-export default { getExercisesByWorkoutId };
+export default { getExercisesByWorkoutId, getExercises };
