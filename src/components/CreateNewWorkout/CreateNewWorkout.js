@@ -28,6 +28,7 @@ class CreateNewWorkout extends React.Component {
     newExercises : [],
     isModalOpen : false,
     isDropdownOpen : false,
+    isSelectedExerciseCompound: true,
     selectedExerciseName : '',
     compoundRepetitions : [
       "6-6-6",
@@ -42,12 +43,33 @@ class CreateNewWorkout extends React.Component {
       "9-8-8",
       "10-9-8",
       "10-10-10"
-    ]
+    ],
+    compoundExercises : [],
+    isolationExercises : []
+  }
+
+  exerciseTypeOrganizer = () => {
+    const compoundExercises = [];
+    this.state.allExercises.forEach((exercise) => {
+      if (exercise.type === 'Compound') {
+        compoundExercises.push(exercise.name);
+      }
+    })
+    const isolationExercises = [];
+    this.state.allExercises.forEach((exercise) => {
+      if (exercise.type === 'Isolation') {
+        isolationExercises.push(exercise.name)
+      }
+    })
+    this.setState({compoundExercises : compoundExercises, isolationExercises: isolationExercises})
   }
 
   componentDidMount() {
     exerciseData.getExercises()
-      .then(exercises => this.setState({allExercises: exercises}))
+      .then(exercises => {
+        this.setState({allExercises: exercises})
+        this.exerciseTypeOrganizer();
+      })
       .catch(err => console.error(err))
   }
 
@@ -58,25 +80,38 @@ class CreateNewWorkout extends React.Component {
   selectExercise = (e) => {
     const newExerciseName = e.target.innerHTML; 
     this.setState({selectedExerciseName : newExerciseName})
+    if (this.state.compoundExercises.indexOf(newExerciseName) === -1) {
+      this.setState({isSelectedExerciseCompound : false})
+    } else {
+      this.setState({isSelectedExerciseCompound : true})
+    }
   }
 
   render() {
 
-    const compoundExerciseNames = this.state.allExercises.map((exercise) => {
-      if (exercise.type === 'Compound') {
-      const exerciseName = exercise.name;
-      return <DropdownItem onClick={this.selectExercise}>{exerciseName}</DropdownItem>
-      }
-    })
+    const organizeExerciseByMuslceGroup = (muscle) => {
+      const muscleExercises = this.state.allExercises.map((exercise) => {
+        if (exercise.muscleGroups.includes(`${muscle}`)) {
+          const exerciseName = exercise.name;
+          return <DropdownItem onClick={this.selectExercise}>{exerciseName}</DropdownItem>
+        }
+      })
+      return muscleExercises;
+    }
 
-    const isolationExerciseNames = this.state.allExercises.map((exercise) => {
-      if (exercise.type === 'Isolation') {
-      const exerciseName = exercise.name;
-      return <DropdownItem onClick={this.selectExercise}>{exerciseName}</DropdownItem>
-      }
-    })
+    const chestExercises = organizeExerciseByMuslceGroup('Chest');
+    const bicepExercises = organizeExerciseByMuslceGroup('Biceps');
+    const tricepExercises = organizeExerciseByMuslceGroup('Triceps');
+    const legExercises = organizeExerciseByMuslceGroup('Legs');
+    const abExercises = organizeExerciseByMuslceGroup('Abs');
+    const shoulderExercises = organizeExerciseByMuslceGroup('Shoulders');
+    const backExercises = organizeExerciseByMuslceGroup('Back');
 
     const compoundRepetitions = this.state.compoundRepetitions.map((reps) => {
+      return <option value={reps}>{reps}</option>
+    })
+
+    const isolationRepetitions = this.state.isolationRepetitions.map((reps) => {
       return <option value={reps}>{reps}</option>
     })
 
@@ -112,33 +147,44 @@ class CreateNewWorkout extends React.Component {
                                   styles: {
                                     ...data.styles,
                                     overflow: 'auto',
-                                    maxHeight: 200,
-                                    width: 350,
+                                    maxHeight: 300,
+                                    width: 300,
                                   },
                                 };
                               },
                             },
                           }}>
-                            <DropdownItem header>Compound Exercises</DropdownItem>
+                            <DropdownItem header className="dropdownHeader">Chest</DropdownItem>
                             <DropdownItem divider/>
-                            {compoundExerciseNames}
-                            {compoundExerciseNames}
-                            {compoundExerciseNames}
-                            <DropdownItem header className="mt-4">Isolation Exercises</DropdownItem>
+                            {chestExercises}
+                            <DropdownItem header className="dropdownHeader mt-4">Triceps</DropdownItem>
                             <DropdownItem divider/>
-                            {isolationExerciseNames}
-                            {isolationExerciseNames}
-                            {isolationExerciseNames}
+                            {tricepExercises}
+                            <DropdownItem header className="dropdownHeader mt-4">Biceps</DropdownItem>
+                            <DropdownItem divider/>
+                            {bicepExercises}
+                            <DropdownItem header className="dropdownHeader mt-4">Shoulders</DropdownItem>
+                            <DropdownItem divider/>
+                            {shoulderExercises}
+                            <DropdownItem header className="dropdownHeader mt-4">Back</DropdownItem>
+                            <DropdownItem divider/>
+                            {backExercises}
+                            <DropdownItem header className="dropdownHeader mt-4">Legs</DropdownItem>
+                            <DropdownItem divider/>
+                            {legExercises}
+                            <DropdownItem header className="dropdownHeader mt-4">Abs</DropdownItem>
+                            <DropdownItem divider/>
+                            {abExercises}
                           </DropdownMenu>
                       </Dropdown>
                   </div>
               </div>
             <div class="row">
             <InputGroup className="mt-4">
-              <div className="col-4 text-center">
+              <div className="col-5 col-md-4 text-center">
                 <label className="modalLabel pt-2">Exercise Name</label>
               </div>
-              <div className="col-8 text-center">
+              <div className="col-7 col-md-8 text-center">
                 <Input id="addExerciseName" value={this.state.selectedExerciseName}></Input>
               </div>
             </InputGroup>
@@ -149,7 +195,7 @@ class CreateNewWorkout extends React.Component {
                 <div class="input-group mb-3">
                   <select class="custom-select" id="inputGroupSelect01">
                     <option selected>Choose...</option>
-                    {compoundRepetitions}
+                    {this.state.isSelectedExerciseCompound ? compoundRepetitions : isolationRepetitions}
                   </select>
                 </div>
               </div>
