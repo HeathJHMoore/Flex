@@ -132,6 +132,8 @@ class CreateNewWorkout extends React.Component {
       isCurrent : true,
       workoutId : '',
       exerciseId : exerciseId,
+      tableId : Math.random() * 1000,
+      order : ''
     }
     const newExercises = this.state.newExercises;
     newExercises.push(newExercise);
@@ -154,14 +156,28 @@ class CreateNewWorkout extends React.Component {
           .then((userWorkouts) => {
             const workoutName = this.state.workoutName;
             const currentWorkout = userWorkouts.filter(workout => workout.name === workoutName);
-            newExercises.forEach((exercise) => {
+            newExercises.forEach((exercise, index) => {
               exercise.workoutId = currentWorkout[0].id;
+              exercise.order = (index + 1);
+              delete exercise.name;
+              delete exercise.tableId;
               exerciseData.createUserWorkoutExercise(exercise);
             })
           })
           .catch(err => console.error(err, 'you weren\'t able to get workouts'))
       })
       .catch(err => console.error(err, 'you didnt add after all'))
+  }
+
+  deleteExercise = (tableId) => {
+    const newExercises = this.state.newExercises;
+    const newExerciseArray = [];
+    newExercises.forEach((exercise) => {
+      if (exercise.tableId !== tableId) {
+        newExerciseArray.push(exercise)
+      }
+    })
+    this.setState({newExercises : newExerciseArray})
   }
 
   render() {
@@ -193,7 +209,7 @@ class CreateNewWorkout extends React.Component {
     })
 
     const newExerciseRows = this.state.newExercises.map((newExercise) => (
-      <NewExerciseRow newExercise={newExercise}/>
+      <NewExerciseRow newExercise={newExercise} deleteExercise={this.deleteExercise}/>
     ))
 
     const isButtonActivated = this.state.activateSubmitWorkoutButton;
