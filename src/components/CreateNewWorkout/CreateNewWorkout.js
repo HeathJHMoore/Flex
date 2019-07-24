@@ -9,14 +9,14 @@ import { Button,
          DropdownMenu, 
          DropdownItem,
          InputGroup,
-         InputGroupAddon,
-         InputGroupButtonDropdown,
-         InputGroupDropdown,
          Input,
 } from 'reactstrap';
+import firebase from 'firebase/app';
+import 'firebase/auth';
 
 import exerciseData from '../../helpers/data/exerciseData';
 import NewExerciseRow from '../NewExerciseRow/NewExerciseRow';
+import workoutData from '../../helpers/data/workoutData';
 
 import './CreateNewWorkout.scss';
 
@@ -32,6 +32,7 @@ class CreateNewWorkout extends React.Component {
     selectedExerciseName : '',
     selectedExerciseId : '',
     workoutName : '',
+    userWorkouts : [],
     compoundRepetitions : [
       "6-6-6",
       "7-6-6",
@@ -47,7 +48,8 @@ class CreateNewWorkout extends React.Component {
       "10-10-10"
     ],
     compoundExercises : [],
-    isolationExercises : []
+    isolationExercises : [],
+    activateSubmitWorkoutButton : true
   }
 
   exerciseTypeOrganizer = () => {
@@ -73,6 +75,9 @@ class CreateNewWorkout extends React.Component {
         this.exerciseTypeOrganizer();
       })
       .catch(err => console.error(err))
+    workoutData.getWorkoutsByUid(firebase.auth().currentUser.uid)
+      .then(userWorkouts => this.setState({userWorkouts : userWorkouts}))
+      .catch()
   }
 
   modalToggle = () => this.setState({isModalOpen: !this.state.isModalOpen})
@@ -82,6 +87,14 @@ class CreateNewWorkout extends React.Component {
   setWorkoutName = (e) => {
     const newWorkoutName = e.target.value;
     this.setState({workoutName : newWorkoutName})
+    const userWorkoutNames = this.state.userWorkouts.map((workout) => {
+      return workout.name;
+    })
+    if (userWorkoutNames.indexOf(newWorkoutName) !== -1) {
+      this.setState({activateSubmitWorkoutButton : false})
+    } else {
+      this.setState({activateSubmitWorkoutButton : true})
+    }
   }
 
   selectExercise = (e) => {
@@ -103,7 +116,6 @@ class CreateNewWorkout extends React.Component {
     const exerciseName = this.state.selectedExerciseName;
     const exerciseReps = document.getElementById('repetitionSelection').value;
     const exerciseWeight = document.getElementById('weightSelection').value;
-    const workoutName = this.state.workoutName;
     const exerciseId = this.state.selectedExerciseId;
     const newExercise = {
       name : exerciseName,
@@ -122,7 +134,28 @@ class CreateNewWorkout extends React.Component {
   }
 
   submitWorkout = () => {
-    console.error('submit workout')
+    const workoutName = this.state.workoutName;
+    const workoutUser = firebase.auth().currentUser.uid;
+    const newWorkout = {
+      name: workoutName,
+      uid: workoutUser
+    }
+    workoutData.createNewWorkout(newWorkout)
+      .then(() => {
+        const newExercises = this.state.newExercises;
+        this.setState({newExercises : []});
+        workoutData.getWorkoutsByUid(firebase.auth().currentUser.uid)
+          .then((userWorkouts) => {
+            const workoutName = this.state.workoutName;
+            const currentWorkout = userWorkouts.filter(workout => workout.name === workoutName);
+            newExercises.forEach((exercise) => {
+              exercise.workoutId = currentWorkout[0].id;
+              exerciseData.createUserWorkoutExercise(exercise);
+            })
+          })
+          .catch(err => console.error(err, 'you weren\'t able to get workouts'))
+      })
+      .catch(err => console.error(err, 'you didnt add after all'))
   }
 
   render() {
@@ -157,6 +190,8 @@ class CreateNewWorkout extends React.Component {
       <NewExerciseRow newExercise={newExercise}/>
     ))
 
+    const isButtonActivated = this.state.activateSubmitWorkoutButton;
+
     return (
       <div className="col-12 mt-2">
           <div className="row justify-content-center mb-2">
@@ -176,7 +211,7 @@ class CreateNewWorkout extends React.Component {
                     <th scope="col" className="text-center align-middle">Exercise</th>
                     <th scope="col" className="text-center align-middle">Repetitions</th>
                     <th scope="col" className="text-center align-middle">Weight</th>
-                    <th scope="col" className="text-center align-middle, blankSpace"></th>
+                    <th scope="col" className="text-center align-middle blankSpace"></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -186,7 +221,11 @@ class CreateNewWorkout extends React.Component {
             </div>
           </div>
           <div className="row justify-content-center">
-          <button className="btn actionButton" onClick={this.submitWorkout}>Submit Workout</button>
+          {
+            isButtonActivated 
+            ? <button className="btn actionButton" onClick={this.submitWorkout}>Submit Workout</button>
+            : <button className="btn actionButton" disabled>Submit Workout</button>
+          }
           </div>
           <Modal isOpen={this.state.isModalOpen}>
             <ModalHeader>Add An Exercise</ModalHeader>

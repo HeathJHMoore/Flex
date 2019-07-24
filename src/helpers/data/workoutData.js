@@ -18,4 +18,6 @@ const getWorkoutsByUid = (uid) => new Promise((resolve, reject) => {
     .catch(err => reject(err))
 })
 
-export default { getWorkoutsByUid };
+const createNewWorkout = (newWorkout) => axios.post(`${databaseURL}/Workouts.json`, newWorkout)
+
+export default { getWorkoutsByUid, createNewWorkout };
