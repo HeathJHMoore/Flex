@@ -235,7 +235,7 @@ class CreateNewWorkout extends React.Component {
                     <th scope="col" className="text-center align-middle">Exercise</th>
                     <th scope="col" className="text-center align-middle">Repetitions</th>
                     <th scope="col" className="text-center align-middle">Weight</th>
-                    <th scope="col" className="text-center align-middle blankSpace"></th>
+                    <th scope="col" className="text-center align-middle tableHeaderItem createNewBlankSpace"></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -276,7 +276,7 @@ class CreateNewWorkout extends React.Component {
                                   styles: {
                                     ...data.styles,
                                     overflow: 'auto',
-                                    maxHeight: 300,
+                                    maxHeight: 400,
                                     width: 300,
                                   },
                                 };
@@ -314,7 +314,7 @@ class CreateNewWorkout extends React.Component {
                 <label className="modalLabel pt-2">Exercise Name</label>
               </div>
               <div className="col-7 col-md-8 text-center">
-                <Input id="addExerciseName" value={this.state.selectedExerciseName}></Input>
+                <div id="addExerciseName" className="form-control">{this.state.selectedExerciseName}</div>
               </div>
             </InputGroup>
             </div>
