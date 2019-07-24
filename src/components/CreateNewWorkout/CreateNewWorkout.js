@@ -227,6 +227,7 @@ class CreateNewWorkout extends React.Component {
           <div className="row justify-content-center mb-4">
             <button className="btn actionButton" onClick={this.modalToggle}>Add An Exercise</button>
           </div>
+          { this.state.newExercises.length !== 0 ?
           <div className="row justify-content-center mb-2">
             <div className="col-12 col-lg-11">
               <table class="table table-bordered table-dark workoutTable">
@@ -244,6 +245,9 @@ class CreateNewWorkout extends React.Component {
               </table>
             </div>
           </div>
+          : ''
+          }
+          { this.state.newExercises.length !== 0 ?
           <div className="row justify-content-center">
           {
             (isButtonActivated && this.state.newExercises.length !==0)
@@ -255,6 +259,8 @@ class CreateNewWorkout extends React.Component {
             <PopoverBody className="popOverBody text-center">You already have a workout with this name! Please choose a different workout name</PopoverBody>
           </Popover>
           </div>
+          : ''
+          }
           <Modal isOpen={this.state.isModalOpen}>
             <ModalHeader>Add An Exercise</ModalHeader>
               <ModalBody class="container">
