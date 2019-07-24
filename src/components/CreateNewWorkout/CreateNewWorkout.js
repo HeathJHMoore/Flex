@@ -88,8 +88,6 @@ class CreateNewWorkout extends React.Component {
 
   dropdownToggle = () => this.setState({isDropdownOpen: !this.state.isDropdownOpen})
 
-  popoverToggle = () => this.setState()
-
   setWorkoutName = (e) => {
     const newWorkoutName = e.target.value;
     this.setState({workoutName : newWorkoutName})
@@ -157,6 +155,8 @@ class CreateNewWorkout extends React.Component {
         workoutData.getWorkoutsByUid(firebase.auth().currentUser.uid)
           .then((userWorkouts) => {
             const workoutName = this.state.workoutName;
+            document.getElementById('newWorkoutName').value = '';
+            this.setState({workoutName : ''})
             const currentWorkout = userWorkouts.filter(workout => workout.name === workoutName);
             newExercises.forEach((exercise, index) => {
               exercise.workoutId = currentWorkout[0].id;
@@ -246,7 +246,7 @@ class CreateNewWorkout extends React.Component {
           </div>
           <div className="row justify-content-center">
           {
-            isButtonActivated 
+            (isButtonActivated && this.state.newExercises.length !==0)
             ? <button id="submitButton" className="btn actionButton" onClick={this.submitWorkout}>Submit Workout</button>
             : <button id="submitButton" className="btn actionButton" disabled>Submit Workout</button>
           }
