@@ -10,6 +10,9 @@ import { Button,
          DropdownItem,
          InputGroup,
          Input,
+         Popover, 
+         PopoverHeader, 
+         PopoverBody
 } from 'reactstrap';
 import firebase from 'firebase/app';
 import 'firebase/auth';
@@ -28,6 +31,7 @@ class CreateNewWorkout extends React.Component {
     newExercises : [],
     isModalOpen : false,
     isDropdownOpen : false,
+    isPopOverOpen : false,
     isSelectedExerciseCompound: true,
     selectedExerciseName : '',
     selectedExerciseId : '',
@@ -84,6 +88,8 @@ class CreateNewWorkout extends React.Component {
 
   dropdownToggle = () => this.setState({isDropdownOpen: !this.state.isDropdownOpen})
 
+  popoverToggle = () => this.setState()
+
   setWorkoutName = (e) => {
     const newWorkoutName = e.target.value;
     this.setState({workoutName : newWorkoutName})
@@ -91,9 +97,9 @@ class CreateNewWorkout extends React.Component {
       return workout.name;
     })
     if (userWorkoutNames.indexOf(newWorkoutName) !== -1) {
-      this.setState({activateSubmitWorkoutButton : false})
+      this.setState({activateSubmitWorkoutButton : false, isPopOverOpen : true})
     } else {
-      this.setState({activateSubmitWorkoutButton : true})
+      this.setState({activateSubmitWorkoutButton : true, isPopOverOpen : false})
     }
   }
 
@@ -223,9 +229,13 @@ class CreateNewWorkout extends React.Component {
           <div className="row justify-content-center">
           {
             isButtonActivated 
-            ? <button className="btn actionButton" onClick={this.submitWorkout}>Submit Workout</button>
-            : <button className="btn actionButton" disabled>Submit Workout</button>
+            ? <button id="submitButton" className="btn actionButton" onClick={this.submitWorkout}>Submit Workout</button>
+            : <button id="submitButton" className="btn actionButton" disabled>Submit Workout</button>
           }
+          <Popover placement="bottom" isOpen={this.state.isPopOverOpen} target="submitButton">
+            <PopoverHeader className="popOverHeader text-center">WHOOPS!!!</PopoverHeader>
+            <PopoverBody className="popOverBody text-center">You already have a workout with this name! Please choose a different workout name</PopoverBody>
+        </Popover>
           </div>
           <Modal isOpen={this.state.isModalOpen}>
             <ModalHeader>Add An Exercise</ModalHeader>
