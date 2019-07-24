@@ -53,7 +53,7 @@ class CreateNewWorkout extends React.Component {
     ],
     compoundExercises : [],
     isolationExercises : [],
-    activateSubmitWorkoutButton : true
+    activateSubmitWorkoutButton : false
   }
 
   exerciseTypeOrganizer = () => {
@@ -96,7 +96,9 @@ class CreateNewWorkout extends React.Component {
     const userWorkoutNames = this.state.userWorkouts.map((workout) => {
       return workout.name;
     })
-    if (userWorkoutNames.indexOf(newWorkoutName) !== -1) {
+    if (newWorkoutName === '') {
+      this.setState({activateSubmitWorkoutButton : false})
+    } else if(userWorkoutNames.indexOf(newWorkoutName) !== -1) {
       this.setState({activateSubmitWorkoutButton : false, isPopOverOpen : true})
     } else {
       this.setState({activateSubmitWorkoutButton : true, isPopOverOpen : false})
@@ -251,7 +253,7 @@ class CreateNewWorkout extends React.Component {
           <Popover placement="bottom" isOpen={this.state.isPopOverOpen} target="submitButton">
             <PopoverHeader className="popOverHeader text-center">WHOOPS!!!</PopoverHeader>
             <PopoverBody className="popOverBody text-center">You already have a workout with this name! Please choose a different workout name</PopoverBody>
-        </Popover>
+          </Popover>
           </div>
           <Modal isOpen={this.state.isModalOpen}>
             <ModalHeader>Add An Exercise</ModalHeader>
