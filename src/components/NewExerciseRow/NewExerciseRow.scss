@@ -1,15 +1,27 @@
 .deleteCross {
   color: red;
-  font-size: 20px;
+  font-size: 22px;
   cursor: pointer;
-  padding: 0px;
+  padding-left: 5%;
+  float: left;
 }
 
 .penEdit {
   color: black;
   cursor: pointer; 
-  font-size: 20px;
-  padding: 0px;
+  font-size: 22px;
+  padding-right: 45px;
+}
+
+@media screen and (max-width: 700px) {
+  .deleteCross {
+    font-size: 15px;
+    padding-left: 0px;
+  }
+  .penEdit {
+    font-size: 12px;
+    padding-left: 10px;
+  }
 }
 
 

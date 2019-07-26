@@ -33,7 +33,11 @@ class CreateNewWorkout extends React.Component {
     isDropdownOpen : false,
     isPopOverOpen : false,
     isSelectedExerciseCompound: true,
+    isEditingExercise : false,
+    editableExerciseTableId : '',
     selectedExerciseName : '',
+    selectedExerciseRepetitions : '',
+    selectedExerciseWeight : 50,
     selectedExerciseId : '',
     workoutName : '',
     userWorkouts : [],
@@ -118,6 +122,53 @@ class CreateNewWorkout extends React.Component {
     })
   }
 
+  editExercise = (tableId) => {
+    this.setState({isEditingExercise : true})
+    let editableExercise = {};
+    const newExercises = this.state.newExercises;
+    newExercises.forEach((exercise) => {
+      if (exercise.tableId === tableId) {
+        editableExercise = exercise;
+      }
+    })
+    this.setState({selectedExerciseName : editableExercise.name, 
+      selectedExerciseRepetitions : editableExercise.repetitions, 
+      selectedExerciseWeight : editableExercise.weight,
+      editableExerciseTableId : tableId
+    })
+    this.modalToggle();
+  }
+
+  updateExercise = () => {
+    const updatedExercises = this.state.newExercises;
+    const editableExerciseTableId = this.state.editableExerciseTableId;
+    updatedExercises.forEach((exercise) => {
+      if (exercise.tableId === editableExerciseTableId) {
+        exercise.name = this.state.selectedExerciseName;
+        exercise.repetitions = this.state.selectedExerciseRepetitions;
+        exercise.weight = this.state.selectedExerciseWeight
+      }
+    })
+    this.setState({
+      newExercises : updatedExercises,
+      selectedExerciseName : '',
+      selectedExerciseRepetitions : '',
+      selectedExerciseWeight : 0,
+      isEditingExercise : false,
+    })
+    this.modalToggle();
+  }
+
+  chooseRepetitions = (e) => {
+    const reps = e.target.value;
+    this.setState({selectedExerciseRepetitions : reps});
+  }
+
+  chooseWeight = (e) => {
+    const weight = e.target.value;
+    this.setState({selectedExerciseWeight : weight})
+  }
+
   submitExercise = () => {
     const exerciseName = this.state.selectedExerciseName;
     const exerciseReps = document.getElementById('repetitionSelection').value;
@@ -137,7 +188,7 @@ class CreateNewWorkout extends React.Component {
     }
     const newExercises = this.state.newExercises;
     newExercises.push(newExercise);
-    this.setState({newExercises : newExercises})
+    this.setState({newExercises : newExercises, selectedExerciseName : ''})
     this.modalToggle();
   }
 
@@ -156,7 +207,6 @@ class CreateNewWorkout extends React.Component {
           .then((userWorkouts) => {
             const workoutName = this.state.workoutName;
             document.getElementById('newWorkoutName').value = '';
-            this.setState({workoutName : ''})
             const currentWorkout = userWorkouts.filter(workout => workout.name === workoutName);
             newExercises.forEach((exercise, index) => {
               exercise.workoutId = currentWorkout[0].id;
@@ -211,7 +261,7 @@ class CreateNewWorkout extends React.Component {
     })
 
     const newExerciseRows = this.state.newExercises.map((newExercise) => (
-      <NewExerciseRow newExercise={newExercise} deleteExercise={this.deleteExercise}/>
+      <NewExerciseRow newExercise={newExercise} deleteExercise={this.deleteExercise} editExercise={this.editExercise}/>
     ))
 
     const isButtonActivated = this.state.activateSubmitWorkoutButton;
@@ -236,7 +286,7 @@ class CreateNewWorkout extends React.Component {
                     <th scope="col" className="text-center align-middle">Exercise</th>
                     <th scope="col" className="text-center align-middle">Repetitions</th>
                     <th scope="col" className="text-center align-middle">Weight</th>
-                    <th scope="col" className="text-center align-middle tableHeaderItem createNewBlankSpace"></th>
+                    <th scope="col" className="text-center align-middle tableHeaderItem createNewBlankSpace">really</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -328,7 +378,7 @@ class CreateNewWorkout extends React.Component {
               <div className="col-6">
                 <div className="mb-1">Repetitions</div>
                 <div class="input-group mb-3">
-                  <select class="custom-select" id="repetitionSelection" onChange={this.chooseRepetitions}>
+                  <select class="custom-select" id="repetitionSelection" onChange={this.chooseRepetitions} value={this.state.selectedExerciseRepetitions}>
                     <option selected>Choose...</option>
                     {this.state.isSelectedExerciseCompound ? compoundRepetitions : isolationRepetitions}
                   </select>
@@ -337,16 +387,29 @@ class CreateNewWorkout extends React.Component {
               <div className="col-6">
                 <div className="mb-1">Weight</div>
                 <div class="input-group mb-3">
-                  <input id="weightSelection" type="number" placeholder="100" class="form-control"></input>
+                  <input id="weightSelection" type="number" placeholder="100" class="form-control" onChange={this.chooseWeight} value={this.state.selectedExerciseWeight}></input>
                   <label className="modalLabel pt-1 pl-2">lbs</label>
                 </div>
               </div>
             </div>
             </ModalBody>
-            <ModalFooter>
-              <Button color="primary" className="actionButton" onClick={this.submitExercise}>Submit Exercise</Button>
-              <Button color="danger" onClick={this.modalToggle}>Cancel</Button>
-          </ModalFooter>
+            {this.state.isEditingExercise ?
+             <ModalFooter>
+             {(this.state.selectedExerciseName !== '' && this.state.selectedExerciseRepetitions !== '' && this.state.selectedExerciseWeight !== 0)
+               ? <Button color="primary" className="actionButton" onClick={this.updateExercise}>Update Exercise</Button>
+               : <Button color="primary" className="actionButton" onClick={this.updateExercise} disabled>Update Exercise</Button>
+             }
+             <Button color="danger" onClick={this.modalToggle}>Cancel Update</Button>
+            </ModalFooter>
+             : 
+             <ModalFooter>
+             {(this.state.selectedExerciseName !== '' && this.state.selectedExerciseRepetitions !== '' && this.state.selectedExerciseWeight !== 0)
+               ? <Button color="primary" className="actionButton" onClick={this.submitExercise}>Submit Exercise</Button>
+               : <Button color="primary" className="actionButton" onClick={this.submitExercise} disabled>Submit Exercise</Button>
+             }
+             <Button color="danger" onClick={this.modalToggle}>Cancel</Button>
+           </ModalFooter>
+             }
           </Modal>
       </div>
     )

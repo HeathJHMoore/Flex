@@ -6,7 +6,12 @@ class NewWorkoutTable extends React.Component {
 
   deleteExerciseEvent = () => {
     const deleteExercise = this.props.deleteExercise;
-    deleteExercise(this.props.newExercise.tableId)
+    deleteExercise(this.props.newExercise.tableId);
+  }
+
+  editExerciseEvent = () => {
+    const editExericse = this.props.editExercise;
+    editExericse(this.props.newExercise.tableId);
   }
 
   render() {
@@ -16,7 +21,7 @@ class NewWorkoutTable extends React.Component {
             <td className="text-center align-middle">{newExercise.name}</td>
             <td className="text-center align-middle">{newExercise.repetitions}</td>
             <td className="text-center align-middle">{newExercise.weight} lbs</td>
-            <td className="text-center align-middle createNewBlankSpace"><i class="fas fa-times deleteCross" onClick={this.deleteExerciseEvent}></i><i class="fas fa-pen penEdit"></i></td>
+            <td className="text-center align-middle createNewBlankSpace"><i class="fas fa-times deleteCross" onClick={this.deleteExerciseEvent}></i><i class="fas fa-pen penEdit" onClick={this.editExerciseEvent}></i></td>
       </tr>
     )
   }
