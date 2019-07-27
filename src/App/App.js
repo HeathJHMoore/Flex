@@ -60,7 +60,7 @@ class App extends React.Component {
           <React.Fragment>
             <MyNavbar authed={authed}/>
             <div className="container mt-2">
-              <div className="row">
+              <div className="row d-flex justify-content-center">
                 <Switch>
                   <PublicRoute path='/auth' component={Auth} authed={authed}/>
                   <PrivateRoute path='/MyDashboard' component={MyDashboard} authed={authed}/>

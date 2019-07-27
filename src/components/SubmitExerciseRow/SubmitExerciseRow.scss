@@ -1,0 +1,13 @@
+.submitExerciseRowContainer {
+  border: solid 1px black;
+}
+
+arrow {
+  transition-duration: .2s;
+}
+
+.rotateArrowUp {
+  transform: rotate(180);
+  transition-duration: .2s;
+}
+
