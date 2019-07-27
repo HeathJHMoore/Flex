@@ -1,3 +1,39 @@
 label {
   font-size: 25px;
 }
+
+.modalLabel {
+  font-size: 16px;
+}
+
+.line {
+  border: solid 1px black;
+}
+
+#addExerciseName {
+  font-size: 16px;
+}
+
+.dropdownHeader {
+  font-size: 20px;
+  font-weight: bold;
+  background-color: rgb(2,48,118);
+  color: white;
+}
+
+// .createWorkoutColumnTables {
+//   background-color: rgb(146,146,146);
+//   font-size: 20px;
+// }
+
+
+.popOverBody {
+  background-color: black;
+  color: white;
+  font-size: 16px;
+}
+
+.createNewBlankSpace {
+  border: solid 1px white !important;
+  background-color: white;
+}

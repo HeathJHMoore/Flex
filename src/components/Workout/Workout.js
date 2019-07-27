@@ -13,7 +13,6 @@ class Workout extends React.Component {
   }
 
   componentDidMount() {
-    console.error('hey from mount')
     exerciseData.getExercisesByWorkoutId(this.props.userWorkout.id)
       .then((response) => {
         const currentExercises = response.filter((exercise) => {
@@ -29,7 +28,7 @@ class Workout extends React.Component {
     const exerciseRows = this.state.workoutExercises.map((workoutExercise) => (
       <TableRow key={workoutExercise.id} workoutExercise={workoutExercise}/>
     ))
-    const submitWorkoutPath = `/SubmitWorkout/:${this.props.userWorkout.id}`
+    const submitWorkoutPath = `/SubmitWorkout/${this.props.userWorkout.id}`
     return (
       <div className="row justify-content-center">
         <div class="col-11 mb-4 mt-4 p-0 workoutContainer">

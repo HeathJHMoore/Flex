@@ -1,0 +1,33 @@
+.deleteCross {
+  color: red;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.penEdit {
+  color: black;
+  cursor: pointer; 
+  font-size: 22px;
+}
+
+.newExerciseRow {
+  border: solid 1px white;
+}
+
+.newExerciseRow td {
+  background-color: rgb(52,58,64);
+}
+
+.newExerciseRow td:last-child {
+  background-color: white;
+  border: solid 1px white !important;
+}
+
+@media screen and (max-width: 585px) {
+  .deleteCross {
+    font-size: 15px;
+  }
+  .penEdit {
+    font-size: 15px;
+  }
+}
