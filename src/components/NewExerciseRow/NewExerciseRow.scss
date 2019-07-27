@@ -2,30 +2,33 @@
   color: red;
   font-size: 22px;
   cursor: pointer;
-  padding-left: 5%;
-  float: left;
 }
 
 .penEdit {
   color: black;
   cursor: pointer; 
   font-size: 22px;
-  padding-right: 45px;
 }
 
-@media screen and (max-width: 700px) {
+.newExerciseRow {
+  border: solid 1px white;
+}
+
+.newExerciseRow td {
+  background-color: rgb(52,58,64);
+}
+
+.newExerciseRow td:last-child {
+  background-color: white;
+  border: solid 1px white !important;
+}
+
+@media screen and (max-width: 585px) {
   .deleteCross {
     font-size: 15px;
-    padding-left: 0px;
   }
   .penEdit {
-    font-size: 12px;
-    padding-left: 10px;
+    font-size: 15px;
+    padding-left: 35%;
   }
 }
-
-
-// .createNewBlankSpace {
-//   border: solid 1px white !important;
-//   background-color: white;
-// }
