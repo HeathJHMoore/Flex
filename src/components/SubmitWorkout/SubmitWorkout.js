@@ -1,9 +1,13 @@
 import React from 'react';
 
 class SubmitWorkout extends React.Component {
+  state = {
+    currentWorkout : this.props.match.params.workoutId
+  }
+  
   render() {
     return (
-      <p>This is Submit Workout</p>
+      <h1>{this.state.currentWorkout}</h1>
     )
   }
 }

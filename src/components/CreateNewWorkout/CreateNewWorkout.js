@@ -279,8 +279,15 @@ class CreateNewWorkout extends React.Component {
           </div>
           { this.state.newExercises.length !== 0 ?
           <div className="row justify-content-center mb-2">
-            <div className="col-12 col-lg-11">
-              <table class="table table-bordered table-dark workoutTable">
+            <div className="col-12 col-lg-11 workoutTable">
+                <div className="row tableHeaderRow mb-2">
+                  <div className="text-center align-middle col-4">Exercise</div>
+                  <div className="text-center align-middle col-3">Repetitions</div>
+                  <div className="text-center align-middle col-3">Weight</div>
+                  <div className="text-center align-middle col-2"></div>
+                </div>
+                {newExerciseRows}
+              {/* <table class="table table-bordered table-dark workoutTable">
                 <thead>
                   <tr className="tableColumnTitles">
                     <th scope="col" className="text-center align-middle">Exercise</th>
@@ -292,7 +299,7 @@ class CreateNewWorkout extends React.Component {
                 <tbody>
                   {newExerciseRows}
                 </tbody>
-              </table>
+              </table> */}
             </div>
           </div>
           : ''
