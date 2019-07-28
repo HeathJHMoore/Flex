@@ -23,16 +23,29 @@ class SubmitWorkout extends React.Component {
       .catch(err => console.error(err))
   }
 
+  updateExerciseRepetitions = (exerciseId, repetitions) => {
+    const currentExercises = this.state.currentExercises;
+    currentExercises.forEach((exercise) => {
+      if (exercise.id === exerciseId) {
+        exercise.completedReptitions = repetitions;
+      }
+    })
+    this.setState({currentExercises : currentExercises})
+  }
+
   render() {
 
     const exerciseRows = this.state.currentExercises.map((exercise) => (
-      <SubmitExerciseRow exercise={exercise}/>
+      <SubmitExerciseRow exercise={exercise} updateExerciseRepetitions={this.updateExerciseRepetitions}/>
     ))
 
     return (
         <div className="col-12 col-md-8 col-lg-6">
-        <h2 className="text-center my-2">{this.state.currentWorkoutInfo.name}</h2>
-        {exerciseRows}
+          <h2 className="text-center my-2">{this.state.currentWorkoutInfo.name}</h2>
+          {exerciseRows}
+          <div className="row mt-3 justify-content-center text-center">
+            <button className="btn btn-danger actionButton col-6 col-md-5">Submit Workout</button>
+          </div>
         </div>
     )
   }
