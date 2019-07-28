@@ -18,6 +18,22 @@ const getWorkoutsByUid = (uid) => new Promise((resolve, reject) => {
     .catch(err => reject(err))
 })
 
+
+const getWorkoutByWorkoutId = (workoutId) => new Promise((resolve, reject) => {
+  axios.get(`${databaseURL}/Workouts/${workoutId}.json`)
+    .then((res) => {
+      const workout = {};
+      if (res.data !== null) {
+        workout.name = res.data.name;
+        workout.id = workoutId;
+        workout.uid = res.data.uid;
+      }
+      console.error(workout, 'this is the workout you got back')
+      resolve(workout);
+    })
+    .catch(err => reject(err))
+})
+
 const createNewWorkout = (newWorkout) => axios.post(`${databaseURL}/Workouts.json`, newWorkout)
 
-export default { getWorkoutsByUid, createNewWorkout };
+export default { getWorkoutsByUid, createNewWorkout, getWorkoutByWorkoutId};
