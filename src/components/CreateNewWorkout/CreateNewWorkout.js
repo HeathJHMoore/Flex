@@ -175,10 +175,11 @@ class CreateNewWorkout extends React.Component {
     const exerciseWeight = document.getElementById('weightSelection').value;
     const exerciseId = this.state.selectedExerciseId;
     const newExercise = {
+      completedRepetitions : '',
       name : exerciseName,
       weight : exerciseWeight,
       repetitions : exerciseReps,
-      Date : '',
+      date : '',
       isSuccessful : false,
       isCurrent : true,
       workoutId : '',

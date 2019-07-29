@@ -27,7 +27,7 @@ class SubmitWorkout extends React.Component {
     const currentExercises = this.state.currentExercises;
     currentExercises.forEach((exercise) => {
       if (exercise.id === exerciseId) {
-        exercise.completedReptitions = repetitions;
+        exercise.completedRepetitions = repetitions;
       }
     })
     this.setState({currentExercises : currentExercises})
@@ -42,15 +42,17 @@ class SubmitWorkout extends React.Component {
       // the reduce method then takes this array of number and returns the summation of all three numbers
       const reducer = (accumulator, currentValue) => parseInt(accumulator) + parseInt(currentValue);
       const prescribedRepSum = exercise.repetitions.split('-').reduce(reducer);
-      const completedRepetitionsSum = exercise.completedReptitions.split('-').reduce(reducer);
+      const completedRepetitionsSum = exercise.completedRepetitions.split('-').reduce(reducer);
       if (completedRepetitionsSum >= prescribedRepSum) {
         successfulExercises.push(exercise);
       } else if (completedRepetitionsSum < prescribedRepSum) {
         unsuccessfulExercises.push(exercise);
       }
     })
-    unsuccessfulExerciseData(unsuccessfulExercises);
-    successfulExerciseData(successfulExercises);
+    console.error(unsuccessfulExercises);
+    exerciseData.unsuccessfulExerciseUpdateData(unsuccessfulExercises);
+    exerciseData.unsuccessfulExerciseCreateData(unsuccessfulExercises);
+    exerciseData.successfulExerciseData(successfulExercises);
   }
 
   render() {

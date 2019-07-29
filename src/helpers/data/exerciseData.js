@@ -1,5 +1,6 @@
 import axios from 'axios';
 import apiKeys from '../apiKeys.json';
+import moment from 'moment';
 
 const databaseURL = apiKeys.firebaseKeys.databaseURL;
 
@@ -42,4 +43,29 @@ const getExercisesByWorkoutId = (workoutId) => new Promise((resolve, reject) => 
 
 const createUserWorkoutExercise = (newExercise) => axios.post(`${databaseURL}/userWorkoutExercises.json`, newExercise)
 
-export default { getExercisesByWorkoutId, getExercises, createUserWorkoutExercise };
+const unsuccessfulExerciseUpdateData = (unsuccessfulExercises) => {
+  unsuccessfulExercises.forEach((exercise) => {
+    const updatedExercise = exercise;
+    updatedExercise.isCurrent = false;
+    updatedExercise.date = moment().format('MMMM Do YYYY, h:mm:ss a');
+    delete updatedExercise.name;
+    axios.put(`${databaseURL}/userWorkoutExercises/${exercise.id}.json`, updatedExercise)
+      .then(() => {
+        const newExercise = exercise;
+        delete newExercise.name;
+        newExercise.isCurrent = true;
+        axios.post(`${databaseURL}/userWorkoutExercises.json`, newExercise);
+      })
+      .catch();
+  })
+}
+
+const successfulExerciseData = (successfulExercises) => {
+
+};
+
+export default { getExercisesByWorkoutId, 
+  getExercises, 
+  createUserWorkoutExercise, 
+  unsuccessfulExerciseUpdateData, 
+  successfulExerciseData };
