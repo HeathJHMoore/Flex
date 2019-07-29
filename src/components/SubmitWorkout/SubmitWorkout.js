@@ -33,6 +33,26 @@ class SubmitWorkout extends React.Component {
     this.setState({currentExercises : currentExercises})
   }
 
+  submitWorkout = () => {
+    const exercisesToSubmit = this.state.currentExercises;
+    const successfulExercises = [];
+    const unsuccessfulExercises = [];
+    exercisesToSubmit.forEach((exercise) => {
+      // the below code uses to split to split the repetitions 8-8-8 into three numbers ["8", "8", "8"].
+      // the reduce method then takes this array of number and returns the summation of all three numbers
+      const reducer = (accumulator, currentValue) => parseInt(accumulator) + parseInt(currentValue);
+      const prescribedRepSum = exercise.repetitions.split('-').reduce(reducer);
+      const completedRepetitionsSum = exercise.completedReptitions.split('-').reduce(reducer);
+      if (completedRepetitionsSum >= prescribedRepSum) {
+        successfulExercises.push(exercise);
+      } else if (completedRepetitionsSum < prescribedRepSum) {
+        unsuccessfulExercises.push(exercise);
+      }
+    })
+    unsuccessfulExerciseData(unsuccessfulExercises);
+    successfulExerciseData(successfulExercises);
+  }
+
   render() {
 
     const exerciseRows = this.state.currentExercises.map((exercise) => (
@@ -44,7 +64,7 @@ class SubmitWorkout extends React.Component {
           <h2 className="text-center my-2">{this.state.currentWorkoutInfo.name}</h2>
           {exerciseRows}
           <div className="row mt-3 justify-content-center text-center">
-            <button className="btn btn-danger actionButton col-6 col-md-5">Submit Workout</button>
+            <button className="btn btn-danger actionButton col-6 col-md-5" onClick={this.submitWorkout}>Submit Workout</button>
           </div>
         </div>
     )
