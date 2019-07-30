@@ -11,6 +11,7 @@ class MyDashboard extends React.Component {
       // <MyWorkouts />
       // </div>
       <div className="col-12 text-center">
+      <h1>My Dashboard</h1>
       <Link className="btn btn-danger mt-2 actionButton" to="/CreateNewWorkout">Create A New Workout</Link>
       <MyWorkouts />
       </div>

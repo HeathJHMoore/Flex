@@ -57,10 +57,10 @@ class Workout extends React.Component {
             </div>
           </div>
           <div className="row justify-content-center">
-            <Link className="btn actionButton mb-3 col-6 col-md-3" to={submitWorkoutPath}>Record Your Performance</Link>
+            <Link className="btn actionButton mb-3 col-8 col-md-3" to={submitWorkoutPath}>Record Your Performance</Link>
           </div>
           <div className="row justify-content-center">
-            <button className="btn btn-danger mb-3 col-6 col-md-3" onClick={this.deleteWorkout}>Delete Workout</button>
+            <button className="btn btn-danger mb-3 col-8 col-md-3" onClick={this.deleteWorkout}>Delete Workout</button>
           </div>
         </div>
       </div>
