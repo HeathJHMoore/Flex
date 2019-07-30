@@ -5,6 +5,7 @@ import TableRow from '../TableRow/TableRow';
 import exerciseData from '../../helpers/data/exerciseData';
 
 import './Workout.scss';
+import workoutData from '../../helpers/data/workoutData';
 
 class Workout extends React.Component {
 
@@ -22,6 +23,11 @@ class Workout extends React.Component {
         this.setState({workoutExercises: currentExercises})
       })
       .catch(err => console.error(err))
+  }
+
+  deleteWorkout = () => {
+    const deleteWorkoutEvent = this.props.deleteWorkout;
+    deleteWorkoutEvent(this.props.userWorkout.id, this.state.workoutExercises);
   }
 
   render() {
@@ -48,8 +54,13 @@ class Workout extends React.Component {
                 {exerciseRows}
                 </tbody>
               </table>
-              <Link className="btn btn-danger actionButton mb-3" to={submitWorkoutPath}>Record Your Performance</Link>
             </div>
+          </div>
+          <div className="row justify-content-center">
+            <Link className="btn actionButton mb-3 col-6 col-md-3" to={submitWorkoutPath}>Record Your Performance</Link>
+          </div>
+          <div className="row justify-content-center">
+            <button className="btn btn-danger mb-3 col-6 col-md-3" onClick={this.deleteWorkout}>Delete Workout</button>
           </div>
         </div>
       </div>

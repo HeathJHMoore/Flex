@@ -51,7 +51,6 @@ class SubmitWorkout extends React.Component {
     })
     console.error(unsuccessfulExercises);
     exerciseData.unsuccessfulExerciseUpdateData(unsuccessfulExercises);
-    exerciseData.unsuccessfulExerciseCreateData(unsuccessfulExercises);
     exerciseData.successfulExerciseData(successfulExercises);
   }
 

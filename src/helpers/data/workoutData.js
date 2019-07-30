@@ -36,4 +36,6 @@ const getWorkoutByWorkoutId = (workoutId) => new Promise((resolve, reject) => {
 
 const createNewWorkout = (newWorkout) => axios.post(`${databaseURL}/Workouts.json`, newWorkout)
 
-export default { getWorkoutsByUid, createNewWorkout, getWorkoutByWorkoutId};
+const deleteWorkout = (workout) => axios.delete(`${databaseURL}/Workouts/${workout}.json`)
+
+export default { getWorkoutsByUid, createNewWorkout, getWorkoutByWorkoutId, deleteWorkout};

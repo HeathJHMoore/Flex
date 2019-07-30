@@ -172,7 +172,7 @@ class CreateNewWorkout extends React.Component {
   submitExercise = () => {
     const exerciseName = this.state.selectedExerciseName;
     const exerciseReps = document.getElementById('repetitionSelection').value;
-    const exerciseWeight = document.getElementById('weightSelection').value;
+    const exerciseWeight = document.getElementById('weightSelection').value * 1;
     const exerciseId = this.state.selectedExerciseId;
     const newExercise = {
       completedRepetitions : '',
@@ -386,7 +386,7 @@ class CreateNewWorkout extends React.Component {
               <div className="col-6">
                 <div className="mb-1">Repetitions</div>
                 <div class="input-group mb-3">
-                  <select class="custom-select" id="repetitionSelection" onChange={this.chooseRepetitions} value={this.state.selectedExerciseRepetitions}>
+                  <select class="custom-select" id="repetitionSelection" onChange={this.chooseRepetitions}>
                     <option selected>Choose...</option>
                     {this.state.isSelectedExerciseCompound ? compoundRepetitions : isolationRepetitions}
                   </select>
