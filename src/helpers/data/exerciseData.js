@@ -86,12 +86,12 @@ const successfulExerciseData = (successfulExercises) => {
     delete successfulExercise.name;
     axios.put(`${databaseURL}/userWorkoutExercises/${exercise.id}.json`, successfulExercise)
       .then(() => {
+        successfulExercise.date = '';
+        delete successfulExercise.completedRepetitions;
+        successfulExercise.isCurrent = true;
+        successfulExercise.isSuccessful = false;
         if (compoundRepetitions.indexOf(successfulExercise.repetitions) !== -1) {
           const oldReps = compoundRepetitions.indexOf(successfulExercise.repetitions);
-          successfulExercise.date = '';
-          delete successfulExercise.completedRepetitions;
-          successfulExercise.isCurrent = true;
-          successfulExercise.isSuccessful = false;
           if (oldReps === (compoundRepetitions.length -1)) {
             const newReps = compoundRepetitions[0];
             successfulExercise.repetitions = newReps;
@@ -104,8 +104,6 @@ const successfulExerciseData = (successfulExercises) => {
           }
         } else {
           const oldReps = isolationRepetitions.indexOf(successfulExercise.repetitions);
-          successfulExercise.date = '';
-          delete successfulExercise.completedRepetitions;
           if (oldReps === (isolationRepetitions.length -1)) {
             const newReps = isolationRepetitions[0];
             successfulExercise.repetitions = newReps;
