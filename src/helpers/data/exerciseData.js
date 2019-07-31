@@ -128,6 +128,7 @@ const deleteUserWorkoutExercises = (exercises) => new Promise((resolve, reject) 
   })
 })
 
+
 export default { getExercisesByWorkoutId, 
   getExercises, 
   createUserWorkoutExercise, 
