@@ -26,10 +26,10 @@ class NewWorkoutTable extends React.Component {
   render() {
     const {newExercise} = this.props;
     return (
-      <div className="row">
-        <div className="col-4 text-center my-auto">{newExercise.name}</div>
-        <div className="col-3 text-center my-auto">{newExercise.repetitions}</div>
-        <div className="col-3 text-center my-auto">{newExercise.weight}</div>
+      <div className="row mb-3 p-1">
+        <div className="col-4 text-center my-auto bg-secondary border pr-0 pl-0">{newExercise.name}</div>
+        <div className="col-3 text-center my-auto bg-secondary border pr-0 pl-0">{newExercise.repetitions}</div>
+        <div className="col-3 text-center my-auto bg-secondary border pr-0 pl-0">{newExercise.weight}</div>
         <div className="col-2 d-flex justify-content-start pl-0 pr-1">
           <div className="w-100 d-flex align-items-center justify-content-around">
             <div><i class="fas fa-times deleteCross" onClick={this.deleteExerciseEvent}></i></div>
