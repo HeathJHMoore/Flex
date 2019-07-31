@@ -11,11 +11,11 @@ class ExerciseCard extends React.Component {
       <div className="col-12 col-md-6 col-lg-4">
         <Card className="shadow pb-2 mb-3 rounded border border-dark">
           <CardBody className="text-light border-bottom border-dark cardBody">
-            <CardTitle>{exercise.name}</CardTitle>
+            <CardTitle className="border-bottom border-light cardTitle pb-2">{exercise.name}</CardTitle>
             <CardSubtitle>{exercise.muscleGroups}</CardSubtitle>
           </CardBody>
           <CardImg src={exercise.image} alt="Card image cap" className="exerciseCardImages"/>
-          <a href={exercise.link} target="_blank" className="text-center mt-2">Learn More About This Exercises</a>
+          <a href={exercise.link} target="_blank" className="text-center mt-2">Learn More About This Exercise</a>
         </Card>
       </div>
     )
