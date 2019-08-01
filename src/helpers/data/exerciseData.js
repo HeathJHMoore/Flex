@@ -56,9 +56,7 @@ const getExercisesByWorkoutId = (workoutId) => new Promise((resolve, reject) => 
     .catch(err => reject(err))
 })
 
-const createUserWorkoutExercise = (newExercise) => axios.post(`${databaseURL}/userWorkoutExercises.json`, newExercise)
-
-const unsuccessfulExerciseUpdateData = (unsuccessfulExercises) => {
+const unsuccessfulExerciseUpdateData = (unsuccessfulExercises) => new Promise((resolve, reject) => {
   unsuccessfulExercises.forEach((exercise) => {
     const updatedExercise = exercise;
     updatedExercise.isCurrent = false;
@@ -71,13 +69,38 @@ const unsuccessfulExerciseUpdateData = (unsuccessfulExercises) => {
         delete newExercise.completedRepetitions;
         newExercise.date = '';
         newExercise.isCurrent = true;
-        axios.post(`${databaseURL}/userWorkoutExercises.json`, newExercise);
+        axios.post(`${databaseURL}/userWorkoutExercises.json`, newExercise)
       })
-      .catch();
+      .catch(err => reject(err));
   })
-}
+  resolve('success');
+})
 
-const successfulExerciseData = (successfulExercises) => {
+const createUserWorkoutExercise = (newExercise) => axios.post(`${databaseURL}/userWorkoutExercises.json`, newExercise)
+
+
+
+// Original code
+// const unsuccessfulExerciseUpdateData = (unsuccessfulExercises) => {
+//   unsuccessfulExercises.forEach((exercise) => {
+//     const updatedExercise = exercise;
+//     updatedExercise.isCurrent = false;
+//     updatedExercise.date = moment().format('MMMM Do YYYY');
+//     delete updatedExercise.name;
+//     axios.put(`${databaseURL}/userWorkoutExercises/${exercise.id}.json`, updatedExercise)
+//       .then(() => {
+//         const newExercise = exercise;
+//         delete newExercise.name;
+//         delete newExercise.completedRepetitions;
+//         newExercise.date = '';
+//         newExercise.isCurrent = true;
+//         axios.post(`${databaseURL}/userWorkoutExercises.json`, newExercise);
+//       })
+//       .catch();
+//   })
+// }
+
+const successfulExerciseData = (successfulExercises) => new Promise((resolve, reject) => {
   successfulExercises.forEach((exercise) => {
     const successfulExercise = exercise;
     successfulExercise.isCurrent = false;
@@ -96,11 +119,11 @@ const successfulExerciseData = (successfulExercises) => {
             const newReps = compoundRepetitions[0];
             successfulExercise.repetitions = newReps;
             successfulExercise.weight = successfulExercise.weight + 5;
-            axios.post(`${databaseURL}/userWorkoutExercises.json`, successfulExercise);
+            axios.post(`${databaseURL}/userWorkoutExercises.json`, successfulExercise)
           } else {
             const newReps = oldReps + 1;
             successfulExercise.repetitions = compoundRepetitions[newReps];
-            axios.post(`${databaseURL}/userWorkoutExercises.json`, successfulExercise);
+            axios.post(`${databaseURL}/userWorkoutExercises.json`, successfulExercise)
           }
         } else {
           const oldReps = isolationRepetitions.indexOf(successfulExercise.repetitions);
@@ -108,17 +131,18 @@ const successfulExerciseData = (successfulExercises) => {
             const newReps = isolationRepetitions[0];
             successfulExercise.repetitions = newReps;
             successfulExercise.weight += 5;
-            axios.post(`${databaseURL}/userWorkoutExercises.json`, successfulExercise);
+            axios.post(`${databaseURL}/userWorkoutExercises.json`, successfulExercise)
           } else {
             const newReps = oldReps + 1;
             successfulExercise.repetitions = isolationRepetitions[newReps];
-            axios.post(`${databaseURL}/userWorkoutExercises.json`, successfulExercise);
+            axios.post(`${databaseURL}/userWorkoutExercises.json`, successfulExercise)
           }
         }
       })
-      .catch(err => console.error(err))
+      .catch(err => reject('nope'))
   })
-};
+  resolve('yes')
+})
 
 const deleteUserWorkoutExercises = (exercises) => new Promise((resolve, reject) => {
   exercises.forEach((exercise) => {

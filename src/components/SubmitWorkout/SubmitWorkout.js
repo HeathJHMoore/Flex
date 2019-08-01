@@ -49,9 +49,13 @@ class SubmitWorkout extends React.Component {
         unsuccessfulExercises.push(exercise);
       }
     })
-    console.error(unsuccessfulExercises);
-    exerciseData.unsuccessfulExerciseUpdateData(unsuccessfulExercises);
-    exerciseData.successfulExerciseData(successfulExercises);
+    exerciseData.unsuccessfulExerciseUpdateData(unsuccessfulExercises)
+      .then(() => {
+        exerciseData.successfulExerciseData(successfulExercises)
+          .then(() => this.props.history.push('/MyDashboard'))
+          .catch()
+      })
+      .catch()
   }
 
   render() {
