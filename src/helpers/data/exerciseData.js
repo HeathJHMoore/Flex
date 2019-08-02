@@ -176,8 +176,8 @@ const successfulExerciseUpdateData = (successfulExercises) => new Promise((resol
 const deleteUserWorkoutExercises = (exercises) => new Promise((resolve, reject) => {
   exercises.forEach((exercise) => {
     axios.delete(`${databaseURL}/userWorkoutExercises/${exercise.id}.json`)
-    .then(() => resolve('all exercises deleted'))
-    .catch(err => reject(err, 'there was an error deleting exercises'))
+      .then(() => resolve('all exercises deleted'))
+      .catch(err => reject(err, 'there was an error deleting exercises'))
   })
 })
 
