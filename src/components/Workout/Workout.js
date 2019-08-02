@@ -10,12 +10,14 @@ import workoutData from '../../helpers/data/workoutData';
 class Workout extends React.Component {
 
   state = {
-    workoutExercises : []
+    workoutExercises : [],
+    allWorkoutExercises : []
   }
 
   componentDidMount() {
     exerciseData.getExercisesByWorkoutId(this.props.userWorkout.id)
       .then((response) => {
+        this.setState({allWorkoutExercises : response})
         const currentExercises = response.filter((exercise) => {
           return exercise.isCurrent === true;
         });
@@ -27,7 +29,7 @@ class Workout extends React.Component {
 
   deleteWorkout = () => {
     const deleteWorkoutEvent = this.props.deleteWorkout;
-    deleteWorkoutEvent(this.props.userWorkout.id, this.state.workoutExercises);
+    deleteWorkoutEvent(this.props.userWorkout.id, this.state.allWorkoutExercises);
   }
 
   render() {
