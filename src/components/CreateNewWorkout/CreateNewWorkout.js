@@ -22,6 +22,7 @@ import NewExerciseRow from '../NewExerciseRow/NewExerciseRow';
 import workoutData from '../../helpers/data/workoutData';
 
 import './CreateNewWorkout.scss';
+import { resolve } from 'dns';
 
 
 class CreateNewWorkout extends React.Component {
@@ -146,14 +147,14 @@ class CreateNewWorkout extends React.Component {
       if (exercise.tableId === editableExerciseTableId) {
         exercise.name = this.state.selectedExerciseName;
         exercise.repetitions = this.state.selectedExerciseRepetitions;
-        exercise.weight = this.state.selectedExerciseWeight
+        exercise.weight = document.getElementById('weightSelection').value * 1;
       }
     })
     this.setState({
       newExercises : updatedExercises,
-      selectedExerciseName : '',
-      selectedExerciseRepetitions : '',
-      selectedExerciseWeight : 0,
+      // selectedExerciseName : '',
+      // selectedExerciseRepetitions : '',
+      // selectedExerciseWeight : 0,
       isEditingExercise : false,
     })
     this.modalToggle();
@@ -224,7 +225,13 @@ class CreateNewWorkout extends React.Component {
               exercise.order = (index + 1);
               delete exercise.name;
               delete exercise.tableId;
-              exerciseData.createUserWorkoutExercise(exercise);
+              exerciseData.createUserWorkoutExercise(exercise)
+                .then(() => {
+                  if (index === (newExercises.length - 1)) {
+                    this.props.history.push('/MyDashboard')
+                  }
+                })
+                .catch(() => console.error('error in adding new userWorkoutExercises'))
             })
           })
           .catch(err => console.error(err, 'you weren\'t able to get workouts'))
