@@ -57,7 +57,10 @@ const getExercisesByWorkoutId = (workoutId) => new Promise((resolve, reject) => 
 })
 
 const unsuccessfulExerciseUpdateData = (unsuccessfulExercises) => new Promise((resolve, reject) => {
-  unsuccessfulExercises.forEach((exercise) => {
+  if (unsuccessfulExercises.length === 0) {
+    resolve('no unsuccessful exercises to update')
+  } else {
+  unsuccessfulExercises.forEach((exercise, index) => {
     const updatedExercise = exercise;
     updatedExercise.isCurrent = false;
     updatedExercise.date = moment().format('MMMM Do YYYY');
@@ -70,10 +73,14 @@ const unsuccessfulExerciseUpdateData = (unsuccessfulExercises) => new Promise((r
         newExercise.date = '';
         newExercise.isCurrent = true;
         axios.post(`${databaseURL}/userWorkoutExercises.json`, newExercise)
+          .then(() => {
+            if (index === (unsuccessfulExercises.length - 1)) {
+              resolve('successful')
+            }
+          }) 
       })
       .catch(err => reject(err));
-  })
-  resolve('success');
+  })}
 })
 
 const createUserWorkoutExercise = (newExercise) => axios.post(`${databaseURL}/userWorkoutExercises.json`, newExercise)
@@ -100,8 +107,11 @@ const createUserWorkoutExercise = (newExercise) => axios.post(`${databaseURL}/us
 //   })
 // }
 
-const successfulExerciseData = (successfulExercises) => new Promise((resolve, reject) => {
-  successfulExercises.forEach((exercise) => {
+const successfulExerciseUpdateData = (successfulExercises) => new Promise((resolve, reject) => {
+  if (successfulExercises.length === 0) {
+    resolve('no successful exercises to udpate')
+  } else {
+  successfulExercises.forEach((exercise, index) => {
     const successfulExercise = exercise;
     successfulExercise.isCurrent = false;
     successfulExercise.isSuccessful = true;
@@ -120,10 +130,20 @@ const successfulExerciseData = (successfulExercises) => new Promise((resolve, re
             successfulExercise.repetitions = newReps;
             successfulExercise.weight = successfulExercise.weight + 5;
             axios.post(`${databaseURL}/userWorkoutExercises.json`, successfulExercise)
+              .then(() => {
+                if (index === (successfulExercises.length - 1)) {
+                  resolve('success')
+                }
+              })
           } else {
             const newReps = oldReps + 1;
             successfulExercise.repetitions = compoundRepetitions[newReps];
             axios.post(`${databaseURL}/userWorkoutExercises.json`, successfulExercise)
+              .then(() => {
+                if (index === (successfulExercises.length - 1)) {
+                  resolve('success')
+                }
+              })
           }
         } else {
           const oldReps = isolationRepetitions.indexOf(successfulExercise.repetitions);
@@ -132,16 +152,25 @@ const successfulExerciseData = (successfulExercises) => new Promise((resolve, re
             successfulExercise.repetitions = newReps;
             successfulExercise.weight += 5;
             axios.post(`${databaseURL}/userWorkoutExercises.json`, successfulExercise)
+              .then(() => {
+                if (index === (successfulExercises.length - 1)) {
+                  resolve('success')
+                }
+              })
           } else {
             const newReps = oldReps + 1;
             successfulExercise.repetitions = isolationRepetitions[newReps];
             axios.post(`${databaseURL}/userWorkoutExercises.json`, successfulExercise)
+              .then(() => {
+                if (index === (successfulExercises.length - 1)) {
+                  resolve('success')
+                }
+              })
           }
         }
       })
       .catch(err => reject('nope'))
-  })
-  resolve('yes')
+  })}
 })
 
 const deleteUserWorkoutExercises = (exercises) => new Promise((resolve, reject) => {
@@ -158,4 +187,4 @@ export default { getExercisesByWorkoutId,
   createUserWorkoutExercise, 
   unsuccessfulExerciseUpdateData, 
   deleteUserWorkoutExercises,
-  successfulExerciseData };
+  successfulExerciseUpdateData };
