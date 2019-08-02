@@ -159,6 +159,16 @@ class CreateNewWorkout extends React.Component {
     this.modalToggle();
   }
 
+  cancelUpdate = () => {
+    this.setState({
+      selectedExerciseName : '',
+      selectedExerciseRepetitions : '',
+      selectedExerciseWeight : 0,
+      isEditingExercise : false,
+    })
+    this.modalToggle();
+  }
+
   chooseRepetitions = (e) => {
     const reps = e.target.value;
     this.setState({selectedExerciseRepetitions : reps});
@@ -281,7 +291,7 @@ class CreateNewWorkout extends React.Component {
           { this.state.newExercises.length !== 0 ?
           <div className="row justify-content-center mb-2">
             <div className="col-12 col-lg-11 workoutTable">
-                <div className="row tableHeaderRow mb-2">
+                <div className="row tableHeaderRow mb-3">
                   <div className="text-center align-middle col-4">Exercise</div>
                   <div className="text-center align-middle col-3">Repetitions</div>
                   <div className="text-center align-middle col-3">Weight</div>
@@ -407,7 +417,7 @@ class CreateNewWorkout extends React.Component {
                ? <Button color="primary" className="actionButton" onClick={this.updateExercise}>Update Exercise</Button>
                : <Button color="primary" className="actionButton" onClick={this.updateExercise} disabled>Update Exercise</Button>
              }
-             <Button color="danger" onClick={this.modalToggle}>Cancel Update</Button>
+             <Button color="danger" onClick={this.cancelUpdate}>Cancel Update</Button>
             </ModalFooter>
              : 
              <ModalFooter>

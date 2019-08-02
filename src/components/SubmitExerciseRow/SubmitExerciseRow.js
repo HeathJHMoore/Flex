@@ -24,6 +24,7 @@ class SubmitExerciseRow extends React.Component {
     const completedRepetitions = `${set1}-${set2}-${set3}`;
     const updateExerciseRepetitions = this.props.updateExerciseRepetitions;
     updateExerciseRepetitions(this.state.exercise.id, completedRepetitions);
+    this.collapseToggle();
   }
 
   render() {

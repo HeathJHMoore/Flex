@@ -37,8 +37,11 @@ class Workout extends React.Component {
     const submitWorkoutPath = `/SubmitWorkout/${this.props.userWorkout.id}`
     return (
       <div className="row justify-content-center">
-        <div class="col-11 mb-4 mt-4 p-0 workoutContainer">
-          <h4 className="tableHeader">{this.props.userWorkout.name}</h4>
+        <div class="col-11 col-md-10 col-lg-6 mb-4 mt-4 p-0 workoutContainer">
+          <div className="tableHeader mb-2">
+          <h4 className="text-left">{this.props.userWorkout.name}</h4>
+          <p className="text-left mb-0">Muscle Groups: </p>
+          </div>
           <div className="row justify-content-center">
             <div className="col-11">
               <table class="table table-bordered table-dark workoutTable">
@@ -57,10 +60,10 @@ class Workout extends React.Component {
             </div>
           </div>
           <div className="row justify-content-center">
-            <Link className="btn actionButton mb-3 col-8 col-md-3" to={submitWorkoutPath}>Record Your Performance</Link>
+            <Link className="btn actionButton mb-3 col-8 col-md-6" to={submitWorkoutPath}>Record Your Performance</Link>
           </div>
           <div className="row justify-content-center">
-            <button className="btn btn-danger mb-3 col-8 col-md-3" onClick={this.deleteWorkout}>Delete Workout</button>
+            <button className="btn btn-danger mb-3 col-8 col-md-6" onClick={this.deleteWorkout}>Delete Workout</button>
           </div>
         </div>
       </div>

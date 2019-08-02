@@ -3,6 +3,7 @@ import React from 'react';
 import exerciseData from '../../helpers/data/exerciseData';
 import workoutData from '../../helpers/data/workoutData';
 import SubmitExerciseRow from '../SubmitExerciseRow/SubmitExerciseRow';
+import { promised } from 'q';
 
 class SubmitWorkout extends React.Component {
   state = {
@@ -15,6 +16,7 @@ class SubmitWorkout extends React.Component {
     exerciseData.getExercisesByWorkoutId(this.state.currentWorkoutId)
       .then((resp) => {
         const currentExercises = resp.filter(exercise => exercise.isCurrent === true)
+        currentExercises.sort(function(a, b){return a.order - b.order});
         this.setState({currentExercises : currentExercises})
       })
       .catch(err => console.error('error from submitworkout', err))
@@ -49,9 +51,21 @@ class SubmitWorkout extends React.Component {
         unsuccessfulExercises.push(exercise);
       }
     })
-    console.error(unsuccessfulExercises);
-    exerciseData.unsuccessfulExerciseUpdateData(unsuccessfulExercises);
-    exerciseData.successfulExerciseData(successfulExercises);
+    // exerciseData.unsuccessfulExerciseUpdateData(unsuccessfulExercises)
+    //   .then(() => {
+    //     exerciseData.successfulExerciseData(successfulExercises)
+    //       .then(() => {
+    //         setTimeout(() => {
+    //           this.props.history.push('/MyDashboard')
+    //         }, 1000);
+    //         })
+    //       .catch()
+    //   })
+    //   .catch()
+
+    Promise.all([exerciseData.unsuccessfulExerciseUpdateData(unsuccessfulExercises), exerciseData.successfulExerciseUpdateData(successfulExercises)])
+      .then(() => this.props.history.push('/MyDashboard'))
+      .catch(() => console.error('all promise failed'))
   }
 
   render() {

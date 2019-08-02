@@ -2,22 +2,134 @@
   "exercise1" : {
     "name": "Barbell Bench Press",
     "type": "Compound",
-    "image": "./images/bench-press.jpg",
+    "image": "https://www.bodybuilding.com/exercises/exerciseImages/sequences/360/Male/m/360_2.jpg",
     "link": "https://www.bodybuilding.com/exercises/barbell-bench-press-medium-grip",
     "muscleGroups": "Chest, Triceps, Shoulders"
   },
   "exercise2" : {
     "name": "Dips",
     "type": "Isolation",
-    "image": "./images/dips-triceps.jpg",
+    "image": "https://www.bodybuilding.com/exercises/exerciseImages/sequences/55/Male/m/55_1.jpg",
     "link": "https://www.bodybuilding.com/exercises/dips-triceps-version",
-    "muscleGroups": "Chest, Triceps, Shoulders"
+    "muscleGroups": "Triceps"
   },
   "exercise3" : {
-    "name": "Barbell Bench Press",
+    "name": "Dumbbell Shoulder Press",
     "type": "Isolation",
-    "image": "./images/triceps-pushdown.jpg",
-    "link": "https://www.bodybuilding.com/exercises/triceps-pushdown-v-bar-attachment",
+    "image": "https://www.bodybuilding.com/exercises/exerciseImages/sequences/328/Male/m/328_2.jpg",
+    "link": "https://www.bodybuilding.com/exercises/dumbbell-shoulder-press",
+    "muscleGroups": "Shoulders"
+  },
+  "exercise4" : {
+    "name": "Kettlebell Push Press",
+    "type": "Isolation",
+    "image": "https://www.bodybuilding.com/exercises/exerciseImages/sequences/519/Male/m/519_3.jpg",
+    "link": "https://www.bodybuilding.com/exercises/one-arm-kettlebell-push-press",
+    "muscleGroups": "Shoulders"
+  },
+  "exercise5" : {
+    "name": "Tricep Push Down - Rope",
+    "type": "Isolation",
+    "image": "https://www.bodybuilding.com/exercises/exerciseImages/sequences/54/Male/m/54_2.jpg",
+    "link": "https://www.bodybuilding.com/exercises/triceps-pushdown-rope-attachment",
     "muscleGroups": "Triceps"
+  },
+  "exercise6" : {
+    "name": "Cable One Arm Tricep Extensions",
+    "type": "Isolation",
+    "image": "https://www.bodybuilding.com/exercises/exerciseImages/sequences/80/Male/m/80_1.jpg",
+    "link": "https://www.bodybuilding.com/exercises/cable-one-arm-tricep-extension",
+    "muscleGroups": "Tricep"
+  },
+  "exercise7" : {
+    "name": "Cable Crossovers",
+    "type": "Isolation",
+    "image": "https://www.bodybuilding.com/exercises/exerciseImages/sequences/132/Male/m/132_2.jpg",
+    "link": "https://www.bodybuilding.com/exercises/cable-crossover",
+    "muscleGroups": "Chest"
+  },
+  "exercise8" : {
+    "name": "Pullups",
+    "type": "Isolation",
+    "image": "https://www.bodybuilding.com/exercises/exerciseImages/sequences/46/Male/m/46_2.jpg",
+    "link": "https://www.bodybuilding.com/exercises/pullups",
+    "muscleGroups": "Back"
+  },
+  "exercise9" : {
+    "name": "Pushups",
+    "type": "Isolation",
+    "image": "https://www.bodybuilding.com/exercises/exerciseImages/sequences/70/Male/m/70_1.jpg",
+    "link": "https://www.bodybuilding.com/exercises/pushups",
+    "muscleGroups": "Chest"
+  },
+  "exercise10" : {
+    "name": "Lat Pulldown",
+    "type": "Isolation",
+    "image": "https://www.bodybuilding.com/exercises/exerciseImages/sequences/10/Male/m/10_2.jpg",
+    "link": "https://www.bodybuilding.com/exercises/wide-grip-lat-pulldown",
+    "muscleGroups": "Back"
+  }, 
+  "exercise11" : {
+    "name": "Seated Cable Rows",
+    "type": "Isolation",
+    "image": "https://www.bodybuilding.com/exercises/exerciseImages/sequences/45/Male/m/45_2.jpg",
+    "link": "https://www.bodybuilding.com/exercises/seated-cable-rows",
+    "muscleGroups": "Back"
+  },
+  "exercise12" : {
+    "name": "T-Bar Row",
+    "type": "Isolation",
+    "image": "https://www.bodybuilding.com/exercises/exerciseImages/sequences/1931/Male/m/1931_2.jpg",
+    "link": "https://www.bodybuilding.com/exercises/t-bar-row-with-handle",
+    "muscleGroups": "Back"
+  },
+  "exercise13" : {
+    "name": "Incline Hammer Curls",
+    "type": "Isolation",
+    "image": "https://www.bodybuilding.com/exercises/exerciseImages/sequences/882/Male/m/882_2.jpg",
+    "link": "https://www.bodybuilding.com/exercises/incline-hammer-curls",
+    "muscleGroups": "Biceps"
+  },
+  "exercise14" : {
+    "name": "Barbell Curl",
+    "type": "Isolation",
+    "image": "https://www.bodybuilding.com/exercises/exerciseImages/sequences/169/Male/m/169_2.jpg",
+    "link": "https://www.bodybuilding.com/exercises/barbell-curl",
+    "muscleGroups": "Biceps"
+  },
+  "exercise15" : {
+    "name": "Barbell Back Squat",
+    "type": "Compound",
+    "image": "https://www.bodybuilding.com/exercises/exerciseImages/sequences/64/Male/m/64_2.jpg",
+    "link": "https://www.bodybuilding.com/exercises/barbell-full-squat",
+    "muscleGroups": "Legs"
+  },
+  "exercise16" : {
+    "name": "Barbell Lunges",
+    "type": "Isolation",
+    "image": "https://www.bodybuilding.com/exercises/exerciseImages/sequences/2241/Male/m/2241_2.jpg",
+    "link": "https://www.bodybuilding.com/exercises/barbell-walking-lunge",
+    "muscleGroups": "Legs"
+  },
+  "exercise17" : {
+    "name": "Barbell Deadlift",
+    "type": "Compound",
+    "image": "https://www.bodybuilding.com/exercises/exerciseImages/sequences/3831/Male/m/3831_1.jpg",
+    "link": "https://www.bodybuilding.com/exercises/barbell-deadlift",
+    "muscleGroups": "Legs"
+  },
+  "exercise18" : {
+    "name": "Cross-Body Crunch",
+    "type": "Isolation",
+    "image": "https://www.bodybuilding.com/exercises/exerciseImages/sequences/124/Male/m/124_2.jpg",
+    "link": "https://www.bodybuilding.com/exercises/cross-body-crunch",
+    "muscleGroups": "Abs"
+  },
+  "exercise19" : {
+    "name": "Plate Twists",
+    "type": "Isolation",
+    "image": "https://www.bodybuilding.com/exercises/exerciseImages/sequences/106/Male/m/106_2.jpg",
+    "link": "https://www.bodybuilding.com/exercises/plate-twist",
+    "muscleGroups": "Abs"
   }
 }
