@@ -22,20 +22,20 @@ class Workout extends React.Component {
     const muscles = []
     exercises.forEach((exercise) => {
       exercise.muscles.forEach((muscle) => {
-        if (muscles.indexOf(muscles) === -1) {
+        if (muscles.indexOf(muscle) === -1) {
           muscles.push(muscle)
         }
       })
     })
-    const muscleString = '';
+    let muscleString = '';
     muscles.forEach((distinctMuscle, index) => {
       if (index === (muscles.length - 1)) {
         muscleString += `${distinctMuscle}`
       } else {
-        muscleString += `${distinctMuscle},`
+        muscleString += `${distinctMuscle}, `
       }
     })
-    this.setState({workoutMuscles : muscleString})
+    return muscleString;
   }
 
   componentDidMount() {
@@ -47,7 +47,6 @@ class Workout extends React.Component {
         });
         currentExercises.sort(function(a, b){return a.order - b.order});
         this.setState({workoutExercises: currentExercises})
-        this.getMuscles();
       })
       .catch(err => console.error(err))
   }
@@ -61,6 +60,7 @@ class Workout extends React.Component {
     const exerciseRows = this.state.workoutExercises.map((workoutExercise) => (
       <TableRow key={workoutExercise.id} workoutExercise={workoutExercise}/>
     ))
+    const workoutMuslces = this.getMuscles();
     const submitWorkoutPath = `/SubmitWorkout/${this.props.userWorkout.id}`
     const workoutImages = this.state.workoutExercises.map((exercise) => (
       {
@@ -71,11 +71,11 @@ class Workout extends React.Component {
       }
     ))
     return (
-        <div className="col-11 col-md-10 col-lg-6 mb-4 mt-4">
+        <div className="col-11 col-md-10 col-lg-6 mb-4 mt-4 workoutCardContainer">
           <div className="workoutContainer">
             <div className="workoutHeader mb-2">
               <h4 className="text-left">{this.props.userWorkout.name}</h4>
-              <p className="text-left mb-0">{this.state.workoutMuscles}</p>
+              <p className="text-left mb-0">Muscle Groups: {workoutMuslces}</p>
             </div>
             <div className="workoutBody row p-3">
               <div className="col-5 pt-2 pb-2 d-flex flex-column justify-content-center">
@@ -93,14 +93,24 @@ class Workout extends React.Component {
                 </div>
               </div>
             </div>
-            <div className="workoutFooter row justify-content-around mt-3 pr-2 pl-2 mb-2">
+            <div className="workoutFooter mt-3 p-2 border border-dark bg-dark">
+                <div className="row justify-content-around">
+                  <div className="col-6 col-md-5">
+                    <Link className="btn actionButton" to={submitWorkoutPath}>Log Attempt</Link>
+                  </div>
+                  <div className="col-6 col-md-5">
+                    <button className="btn btn-danger" onClick={this.deleteWorkout}>Delete Workout</button>
+                  </div>
+                </div>
+            </div>
+            {/* <div className="workoutFooter row justify-content-around mt-3">
               <div className="col-6 col-md-5">
                 <Link className="btn actionButton" to={submitWorkoutPath}>Log Attempt</Link>
               </div>
               <div className="col-6 col-md-5">
                 <button className="btn btn-danger" onClick={this.deleteWorkout}>Delete Workout</button>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
 

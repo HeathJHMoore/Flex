@@ -7,6 +7,8 @@ import workoutData from '../../helpers/data/workoutData';
 import exerciseData from '../../helpers/data/exerciseData';
 import Workout from '../Workout/Workout';
 
+import "./MyWorkouts.scss";
+
 class MyWorkouts extends React.Component {
 
   state = {
@@ -44,7 +46,7 @@ class MyWorkouts extends React.Component {
     ))
 
     return (
-      <div className="row justify-content-around">
+      <div className="row justify-content-around workoutsContainer">
         {workoutBuilder}
       </div>
      
