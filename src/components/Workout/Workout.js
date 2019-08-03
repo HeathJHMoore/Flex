@@ -12,7 +12,30 @@ class Workout extends React.Component {
 
   state = {
     workoutExercises : [],
-    allWorkoutExercises : []
+    allWorkoutExercises : [],
+    workoutMuscles : ''
+  }
+
+
+  getMuscles = () => {
+    const exercises = this.state.workoutExercises;
+    const muscles = []
+    exercises.forEach((exercise) => {
+      exercise.muscles.forEach((muscle) => {
+        if (muscles.indexOf(muscles) === -1) {
+          muscles.push(muscle)
+        }
+      })
+    })
+    const muscleString = '';
+    muscles.forEach((distinctMuscle, index) => {
+      if (index === (muscles.length - 1)) {
+        muscleString += `${distinctMuscle}`
+      } else {
+        muscleString += `${distinctMuscle},`
+      }
+    })
+    this.setState({workoutMuscles : muscleString})
   }
 
   componentDidMount() {
@@ -24,6 +47,7 @@ class Workout extends React.Component {
         });
         currentExercises.sort(function(a, b){return a.order - b.order});
         this.setState({workoutExercises: currentExercises})
+        this.getMuscles();
       })
       .catch(err => console.error(err))
   }
@@ -51,7 +75,7 @@ class Workout extends React.Component {
           <div className="workoutContainer">
             <div className="workoutHeader mb-2">
               <h4 className="text-left">{this.props.userWorkout.name}</h4>
-              <p className="text-left mb-0">Muscle Groups: </p>
+              <p className="text-left mb-0">{this.state.workoutMuscles}</p>
             </div>
             <div className="workoutBody row p-3">
               <div className="col-5 pt-2 pb-2 d-flex flex-column justify-content-center">

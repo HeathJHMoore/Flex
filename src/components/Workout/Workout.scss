@@ -5,10 +5,6 @@
   color: white;
 }
 
-.workoutBody {
-  .actionButton {
-  }
-}
 
 .tableColumnTitles {
   background-color: rgb(146,146,146);
@@ -28,6 +24,14 @@
   .workoutTable {
     font-size: 10px;
   }
+
+  .workoutHeader {
+    font-size: .8rem;
+    h4 {
+    
+    }
+  }
+
   .workoutBody {
     h5 {
       font-size: .9rem;
