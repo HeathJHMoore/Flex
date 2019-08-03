@@ -1,8 +1,13 @@
-.tableHeader {
+.workoutHeader {
   border: solid 1px black;
   margin-bottom: 0px;
   background-color: rgb(2,48,118);
   color: white;
+}
+
+.workoutBody {
+  .actionButton {
+  }
 }
 
 .tableColumnTitles {
@@ -19,8 +24,27 @@
   border: solid 1px black;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 768px) {
   .workoutTable {
     font-size: 10px;
+  }
+  .workoutBody {
+    h5 {
+      font-size: .9rem;
+    }
+    h6 {
+      font-size: .9rem;
+    }
+    .btn-secondary {
+      font-size: .8rem;
+    }
+  }
+  .workoutFooter {
+    .actionButton {
+      font-size: .8rem;
+    }
+    .btn-danger {
+      font-size: .8rem;
+    }
   }
 }

@@ -44,13 +44,24 @@ class MyWorkouts extends React.Component {
     ))
 
     return (
-      <div className="row"> {/* this is new stuff */}
-      <div className="col-12">
-      {workoutBuilder}
+      <div className="row justify-content-around">
+        {workoutBuilder}
       </div>
-      </div>
+     
+     
+     
+      // THIS IS THE CODE BEING USED IN MASTER CURRENTLY
+      // <div className="row"> {/* this is new stuff */}
+      // <div className="col-12">
+      // {workoutBuilder}
+      // </div>
+      // </div>
 
-      // this is original code
+
+
+
+
+      // THIS IS SOME REALLY OLD CODE, DONT USE IT
       // <div className="row d-flex justify-content-center">
       // {workoutBuilder}
       // </div>

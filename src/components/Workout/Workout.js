@@ -1,4 +1,5 @@
 import React from 'react';
+import { UncontrolledCarousel } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 import TableRow from '../TableRow/TableRow';
@@ -37,38 +38,101 @@ class Workout extends React.Component {
       <TableRow key={workoutExercise.id} workoutExercise={workoutExercise}/>
     ))
     const submitWorkoutPath = `/SubmitWorkout/${this.props.userWorkout.id}`
+    const workoutImages = this.state.workoutExercises.map((exercise) => (
+      {
+        src: exercise.image,
+        altText : "",
+        caption : "",
+        header : exercise.name
+      }
+    ))
     return (
-      <div className="row justify-content-center">
-        <div class="col-11 col-md-10 col-lg-6 mb-4 mt-4 p-0 workoutContainer">
-          <div className="tableHeader mb-2">
-          <h4 className="text-left">{this.props.userWorkout.name}</h4>
-          <p className="text-left mb-0">Muscle Groups: </p>
-          </div>
-          <div className="row justify-content-center">
-            <div className="col-11">
-              <table class="table table-bordered table-dark workoutTable">
-                <thead>
-                  <tr className="tableColumnTitles">
-                    <th scope="col" className="blankSpace"></th>
-                    <th scope="col" className="text-center align-middle">Exercise</th>
-                    <th scope="col" className="text-center align-middle">Prescribed Repetitions</th>
-                    <th scope="col" className="text-center align-middle">Prescribed Weight</th>
-                  </tr>
-                </thead>
-                <tbody>
-                {exerciseRows}
-                </tbody>
-              </table>
+        <div className="col-11 col-md-10 col-lg-6 mb-4 mt-4">
+          <div className="workoutContainer">
+            <div className="workoutHeader mb-2">
+              <h4 className="text-left">{this.props.userWorkout.name}</h4>
+              <p className="text-left mb-0">Muscle Groups: </p>
+            </div>
+            <div className="workoutBody row p-3">
+              <div className="col-5 pt-2 pb-2 d-flex flex-column justify-content-center">
+                <div className="mb-1">
+                  <h5>Last Attempt:</h5>
+                  <h6>July 24th 2019</h6>
+                </div>
+                <div>
+                  <button className="btn btn-secondary">Quick View</button>
+                </div>
+              </div>
+              <div className="col-7">
+                <div className="border border-dark shadow">
+                <UncontrolledCarousel items={workoutImages} controls={false} indicators={false}/>
+                </div>
+              </div>
+            </div>
+            <div className="workoutFooter row justify-content-around mt-3 pr-2 pl-2 mb-2">
+              <div className="col-6 col-md-5">
+                <Link className="btn actionButton" to={submitWorkoutPath}>Log Attempt</Link>
+              </div>
+              <div className="col-6 col-md-5">
+                <button className="btn btn-danger" onClick={this.deleteWorkout}>Delete Workout</button>
+              </div>
             </div>
           </div>
-          <div className="row justify-content-center">
-            <Link className="btn actionButton mb-3 col-8 col-md-6" to={submitWorkoutPath}>Record Your Performance</Link>
-          </div>
-          <div className="row justify-content-center">
-            <button className="btn btn-danger mb-3 col-8 col-md-6" onClick={this.deleteWorkout}>Delete Workout</button>
-          </div>
         </div>
-      </div>
+
+
+
+
+
+
+
+
+      // THIS IS THE CODE THAT IS CURRENTLY BEING USED IN MASTER
+      // <div className="row justify-content-center">
+      //   <div class="col-11 col-md-10 col-lg-6 mb-4 mt-4 p-0 workoutContainer">
+      //     <div className="tableHeader mb-2">
+      //     <h4 className="text-left">{this.props.userWorkout.name}</h4>
+      //     <p className="text-left mb-0">Muscle Groups: </p>
+      //     </div>
+      //     <div className="row justify-content-center">
+      //       <div className="col-11">
+      //         <table class="table table-bordered table-dark workoutTable">
+      //           <thead>
+      //             <tr className="tableColumnTitles">
+      //               <th scope="col" className="blankSpace"></th>
+      //               <th scope="col" className="text-center align-middle">Exercise</th>
+      //               <th scope="col" className="text-center align-middle">Prescribed Repetitions</th>
+      //               <th scope="col" className="text-center align-middle">Prescribed Weight</th>
+      //             </tr>
+      //           </thead>
+      //           <tbody>
+      //           {exerciseRows}
+      //           </tbody>
+      //         </table>
+      //       </div>
+      //     </div>
+      //     <div className="row justify-content-center">
+      //       <Link className="btn actionButton mb-3 col-8 col-md-6" to={submitWorkoutPath}>Record Your Performance</Link>
+      //     </div>
+      //     <div className="row justify-content-center">
+      //       <button className="btn btn-danger mb-3 col-8 col-md-6" onClick={this.deleteWorkout}>Delete Workout</button>
+      //     </div>
+      //   </div>
+      // </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // THS IS REALLY OLD CODE, JUST IGNORE IT FOR NOW
       //   <div class="col-11 col-md-10 mb-4 mt-4 p-0 workoutContainer">
       //   <h4 className="tableHeader">{this.props.userWorkout.name}</h4>
       //   <div className="container">
