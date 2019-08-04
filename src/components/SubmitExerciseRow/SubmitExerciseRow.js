@@ -8,7 +8,8 @@ class SubmitExerciseRow extends React.Component {
 
   state = {
     exercise : {},
-    isCollapseOpen : false
+    isCollapseOpen : false,
+    isSaved : false
   }
 
   componentDidMount() {
@@ -25,6 +26,7 @@ class SubmitExerciseRow extends React.Component {
     const updateExerciseRepetitions = this.props.updateExerciseRepetitions;
     updateExerciseRepetitions(this.state.exercise.id, completedRepetitions);
     this.collapseToggle();
+    this.setState({isSaved : true})
   }
 
   render() {
@@ -36,9 +38,10 @@ class SubmitExerciseRow extends React.Component {
     return (
       <div className="row p-2 ml-1 mr-1 submitExerciseRowContainer">
         <div className="col-12">
-          <div className="row border-bottom">
-            <p className="col-10 my-auto">Exercise {exercise.order}: {exercise.name}</p>
-            <i className="fas fa-arrow-down arrow col-2 text-right my-auto pr-4" onClick={this.collapseToggle}></i>
+          <div className="row border-bottom justify-content-between">
+            <p className="col-9 my-auto exerciseName">Exercise {exercise.order}: {exercise.name}</p>
+            {this.state.isSaved ? <i class="fas fa-check-square col-1 my-auto"></i> : ''}
+            <i className="fas fa-arrow-down arrow col-1 text-right my-auto" onClick={this.collapseToggle}></i>
           </div>
         </div>
         <Collapse isOpen={this.state.isCollapseOpen} className="col-12">

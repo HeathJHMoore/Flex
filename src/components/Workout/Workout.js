@@ -4,16 +4,22 @@ import { Link } from 'react-router-dom';
 
 import TableRow from '../TableRow/TableRow';
 import exerciseData from '../../helpers/data/exerciseData';
+import workoutData from '../../helpers/data/workoutData';
+import WorkoutModal from '../WorkoutModal/WorkoutModal';
 
 import './Workout.scss';
-import workoutData from '../../helpers/data/workoutData';
 
 class Workout extends React.Component {
 
   state = {
     workoutExercises : [],
     allWorkoutExercises : [],
-    workoutMuscles : ''
+    workoutMuscles : '',
+    workoutModalStatus : false
+  }
+
+  openModal = () => {
+    this.setState({workoutModalStatus : !this.state.workoutModalStatus})
   }
 
 
@@ -76,6 +82,7 @@ class Workout extends React.Component {
             <div className="workoutHeader mb-2 pl-1">
               <h4 className="text-left">{this.props.userWorkout.name}</h4>
               <p className="text-left mb-0">Muscle Groups: {workoutMuslces}</p>
+              <i class="fas fa-times-circle" onClick={this.deleteWorkout}></i>
             </div>
             <div className="workoutBody row p-3">
               <div className="col-5 pb-2 d-flex flex-column justify-content-center">
@@ -84,7 +91,7 @@ class Workout extends React.Component {
                   <h6>{this.props.userWorkout.lastCompleted}</h6>
                 </div>
                 <div>
-                  <button className="btn btn-secondary">Quick View</button>
+                  <button className="btn btn-secondary" onClick={this.openModal}>Quick View</button>
                 </div>
               </div>
               <div className="col-7">
@@ -98,9 +105,9 @@ class Workout extends React.Component {
                   <div className="col-6 col-md-5">
                     <Link className="btn actionButton" to={submitWorkoutPath}>Log Attempt</Link>
                   </div>
-                  <div className="col-6 col-md-5">
+                  {/* <div className="col-6 col-md-5">
                     <button className="btn btn-danger" onClick={this.deleteWorkout}>Delete Workout</button>
-                  </div>
+                  </div> */}
                 </div>
             </div>
             {/* <div className="workoutFooter row justify-content-around mt-3">
@@ -112,6 +119,12 @@ class Workout extends React.Component {
               </div>
             </div> */}
           </div>
+          <WorkoutModal 
+            workoutExercises={this.state.workoutExercises} 
+            workoutModalStatus={this.state.workoutModalStatus} 
+            openModal={this.openModal}
+            userWorkout={this.props.userWorkout}
+          />
         </div>
 
 
