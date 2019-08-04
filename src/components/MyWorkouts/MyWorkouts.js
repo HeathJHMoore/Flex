@@ -7,6 +7,8 @@ import workoutData from '../../helpers/data/workoutData';
 import exerciseData from '../../helpers/data/exerciseData';
 import Workout from '../Workout/Workout';
 
+import "./MyWorkouts.scss";
+
 class MyWorkouts extends React.Component {
 
   state = {
@@ -44,13 +46,24 @@ class MyWorkouts extends React.Component {
     ))
 
     return (
-      <div className="row"> {/* this is new stuff */}
-      <div className="col-12">
-      {workoutBuilder}
+      <div className="row justify-content-around workoutsContainer">
+        {workoutBuilder}
       </div>
-      </div>
+     
+     
+     
+      // THIS IS THE CODE BEING USED IN MASTER CURRENTLY
+      // <div className="row"> {/* this is new stuff */}
+      // <div className="col-12">
+      // {workoutBuilder}
+      // </div>
+      // </div>
 
-      // this is original code
+
+
+
+
+      // THIS IS SOME REALLY OLD CODE, DONT USE IT
       // <div className="row d-flex justify-content-center">
       // {workoutBuilder}
       // </div>

@@ -38,4 +38,7 @@ const createNewWorkout = (newWorkout) => axios.post(`${databaseURL}/Workouts.jso
 
 const deleteWorkout = (workout) => axios.delete(`${databaseURL}/Workouts/${workout}.json`)
 
-export default { getWorkoutsByUid, createNewWorkout, getWorkoutByWorkoutId, deleteWorkout};
+const logWorkoutCompletion = (workoutId, updatedWorkout) => axios.put(`${databaseURL}/Workouts/${workoutId}.json`, updatedWorkout);
+
+
+export default { getWorkoutsByUid, createNewWorkout, getWorkoutByWorkoutId, deleteWorkout, logWorkoutCompletion};

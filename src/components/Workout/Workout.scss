@@ -1,9 +1,35 @@
-.tableHeader {
+.workoutHeader {
+  position: relative;
   border: solid 1px black;
   margin-bottom: 0px;
   background-color: rgb(2,48,118);
   color: white;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
+
+.workoutFooter {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  .btn-primary {
+    background-color: white;
+    color: rgb(2,48,118);
+    cursor: pointer;
+  }
+}
+
+.fa-times-circle {
+  position: absolute;
+  top: -12px;
+  right: -7px;;
+  color: red;
+  font-size: 36px;
+  background-color: white;
+  border-radius: 100%;
+  cursor: pointer;
+  z-index: 1;
+}
+
 
 .tableColumnTitles {
   background-color: rgb(146,146,146);
@@ -16,11 +42,37 @@
 }
 
 .workoutContainer {
-  border: solid 1px black;
+  border: solid 2px black;
+  border-radius: 14px;
 }
 
-@media screen and (max-width: 700px) {
+
+@media screen and (max-width: 768px) {
   .workoutTable {
     font-size: 10px;
+  }
+
+  .workoutHeader {
+    font-size: .8rem;
+    h4 {
+    
+    }
+  }
+
+  .workoutBody {
+    h5 {
+      font-size: .9rem;
+    }
+    h6 {
+      font-size: .9rem;
+    }
+    .actionButton {
+      font-size: .7rem;
+    }
+  }
+  .workoutFooter {
+    .actionButton {
+      font-size: .9rem;
+    }
   }
 }

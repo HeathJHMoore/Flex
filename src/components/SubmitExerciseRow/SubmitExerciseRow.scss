@@ -19,3 +19,14 @@ arrow {
   font-size: 20px;
 }
 
+
+.fa-check-square {
+  color: green;
+}
+
+
+@media screen and (max-width: 768px) {
+  .exerciseName {
+    font-size: 13px;
+  }
+}

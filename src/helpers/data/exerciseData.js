@@ -46,6 +46,8 @@ const getExercisesByWorkoutId = (workoutId) => new Promise((resolve, reject) => 
             exercises.forEach((exercise) => {
               if (exercise.id === workoutExercise.exerciseId) {
                 workoutExercise.name = exercise.name;
+                workoutExercise.image = exercise.image;
+                workoutExercise.muscles = exercise.muscleGroups;
               }
             })
           });
