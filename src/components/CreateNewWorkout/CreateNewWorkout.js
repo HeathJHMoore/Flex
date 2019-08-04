@@ -209,7 +209,8 @@ class CreateNewWorkout extends React.Component {
     const workoutUser = firebase.auth().currentUser.uid;
     const newWorkout = {
       name: workoutName,
-      uid: workoutUser
+      uid: workoutUser,
+      lastCompleted: ""
     }
     workoutData.createNewWorkout(newWorkout)
       .then(() => {

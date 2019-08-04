@@ -3,6 +3,7 @@ import React from 'react';
 import exerciseData from '../../helpers/data/exerciseData';
 import workoutData from '../../helpers/data/workoutData';
 import SubmitExerciseRow from '../SubmitExerciseRow/SubmitExerciseRow';
+import moment from 'moment';
 import { promised } from 'q';
 
 class SubmitWorkout extends React.Component {
@@ -39,6 +40,11 @@ class SubmitWorkout extends React.Component {
     const exercisesToSubmit = this.state.currentExercises;
     const successfulExercises = [];
     const unsuccessfulExercises = [];
+    const updatedWorkout = {
+      name : this.state.currentWorkoutInfo.name,
+      uid : this.state.currentWorkoutInfo.uid,
+      lastCompleted : moment().format('MMMM Do, YYYY')
+    }
     exercisesToSubmit.forEach((exercise) => {
       // the below code uses to split to split the repetitions 8-8-8 into three numbers ["8", "8", "8"].
       // the reduce method then takes this array of number and returns the summation of all three numbers
@@ -63,7 +69,7 @@ class SubmitWorkout extends React.Component {
     //   })
     //   .catch()
 
-    Promise.all([exerciseData.unsuccessfulExerciseUpdateData(unsuccessfulExercises), exerciseData.successfulExerciseUpdateData(successfulExercises)])
+    Promise.all([exerciseData.unsuccessfulExerciseUpdateData(unsuccessfulExercises), exerciseData.successfulExerciseUpdateData(successfulExercises), workoutData.logWorkoutCompletion(this.state.currentWorkoutId, updatedWorkout)])
       .then(() => this.props.history.push('/MyDashboard'))
       .catch(() => console.error('all promise failed'))
   }

@@ -1,14 +1,17 @@
 {
   "workout1" : {
     "name": "freaking dope",
-    "uid" : "80Wyzvkvfdd9v2kvP6L7vb4cB6h1"
+    "uid" : "80Wyzvkvfdd9v2kvP6L7vb4cB6h1",
+    "lastCompleted" : ""
   },
   "workout2" : {
     "name": "freaking doper",
-    "uid" : "80Wyzvkvfdd9v2kvP6L7vb4cB6h1"
+    "uid" : "80Wyzvkvfdd9v2kvP6L7vb4cB6h1",
+    "lastCompleted" : ""
   },
   "workout3" : {
     "name": "freaking dopest",
-    "uid" : ""
+    "uid" : "",
+    "lastCompleted" : ""
   }
 }

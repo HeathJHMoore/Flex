@@ -73,15 +73,15 @@ class Workout extends React.Component {
     return (
         <div className="col-11 col-md-10 col-lg-6 mb-4 mt-4 workoutCardContainer">
           <div className="workoutContainer">
-            <div className="workoutHeader mb-2">
+            <div className="workoutHeader mb-2 pl-1">
               <h4 className="text-left">{this.props.userWorkout.name}</h4>
               <p className="text-left mb-0">Muscle Groups: {workoutMuslces}</p>
             </div>
             <div className="workoutBody row p-3">
-              <div className="col-5 pt-2 pb-2 d-flex flex-column justify-content-center">
+              <div className="col-5 pb-2 d-flex flex-column justify-content-center">
                 <div className="mb-1">
                   <h5>Last Attempt:</h5>
-                  <h6>July 24th 2019</h6>
+                  <h6>{this.props.userWorkout.lastCompleted}</h6>
                 </div>
                 <div>
                   <button className="btn btn-secondary">Quick View</button>
