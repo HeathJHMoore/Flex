@@ -11,6 +11,11 @@
 .workoutFooter {
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
+  .btn-primary {
+    background-color: white;
+    color: rgb(2,48,118);
+    cursor: pointer;
+  }
 }
 
 .fa-times-circle {
@@ -22,6 +27,7 @@
   background-color: white;
   border-radius: 100%;
   cursor: pointer;
+  z-index: 1;
 }
 
 
@@ -60,16 +66,13 @@
     h6 {
       font-size: .9rem;
     }
-    .btn-secondary {
+    .actionButton {
       font-size: .8rem;
     }
   }
   .workoutFooter {
     .actionButton {
-      font-size: .8rem;
-    }
-    .btn-danger {
-      font-size: .8rem;
+      font-size: .9rem;
     }
   }
 }

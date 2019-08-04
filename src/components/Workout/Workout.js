@@ -80,7 +80,7 @@ class Workout extends React.Component {
         <div className="col-11 col-md-10 col-lg-6 mb-4 mt-4 workoutCardContainer">
           <div className="workoutContainer">
             <div className="workoutHeader mb-2 pl-1">
-              <h4 className="text-left">{this.props.userWorkout.name}</h4>
+              <h4 className="text-left mb-1">{this.props.userWorkout.name}</h4>
               <p className="text-left mb-0">Muscle Groups: {workoutMuslces}</p>
               <i class="fas fa-times-circle" onClick={this.deleteWorkout}></i>
             </div>
@@ -91,7 +91,7 @@ class Workout extends React.Component {
                   <h6>{this.props.userWorkout.lastCompleted}</h6>
                 </div>
                 <div>
-                  <button className="btn btn-secondary" onClick={this.openModal}>Quick View</button>
+                  <Link className="btn actionButton" to={submitWorkoutPath}>Log Attempt</Link>
                 </div>
               </div>
               <div className="col-7">
@@ -102,8 +102,8 @@ class Workout extends React.Component {
             </div>
             <div className="workoutFooter mt-3 p-2 border border-dark bg-dark">
                 <div className="row justify-content-around">
-                  <div className="col-6 col-md-5">
-                    <Link className="btn actionButton" to={submitWorkoutPath}>Log Attempt</Link>
+                  <div className="col-8 col-md-5">
+                   <button className="btn actionButton" onClick={this.openModal}>Workout Summary</button>
                   </div>
                   {/* <div className="col-6 col-md-5">
                     <button className="btn btn-danger" onClick={this.deleteWorkout}>Delete Workout</button>

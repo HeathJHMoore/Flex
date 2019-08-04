@@ -46,7 +46,7 @@ class WorkoutModal extends React.Component {
           </div>
         </ModalBody>
         <ModalFooter>
-          <button onClick={this.closeModalEvent}>Close</button>
+          <button className="btn actionButton" onClick={this.closeModalEvent}>Close</button>
         </ModalFooter>
       </Modal>
     )
