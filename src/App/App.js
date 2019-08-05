@@ -11,6 +11,7 @@ import MyDashboard from '../components/MyDashboard/MyDashboard';
 import ExerciseDictionary from '../components/ExerciseDictionary/ExerciseDictionary';
 import CreateNewWorkout from '../components/CreateNewWorkout/CreateNewWorkout';
 import SubmitWorkout from '../components/SubmitWorkout/SubmitWorkout';
+import ExerciseStatistics from '../components/ExerciseStatistics/ExerciseStatistics';
 import firebaseConnection from '../helpers/data/connection';
 
 firebaseConnection();
@@ -69,6 +70,7 @@ class App extends React.Component {
                   {/* <PrivateRoute path='/ExcerciseStats/:id' component={ExerciseStats} authed={authed}/> */}
                   <PrivateRoute path='/CreateNewWorkout' component={CreateNewWorkout} authed={authed}/>
                   <PrivateRoute path='/SubmitWorkout/:workoutId' component={SubmitWorkout} authed={authed}/>
+                  <PrivateRoute path='/ExerciseStatistics' component={ExerciseStatistics} authed={authed}/>
                   <Redirect from="*" to="/auth"/>
                 </Switch>
               </div>

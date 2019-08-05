@@ -91,7 +91,7 @@ class Workout extends React.Component {
                   <h6>{this.props.userWorkout.lastCompleted}</h6>
                 </div>
                 <div>
-                  <Link className="btn actionButton" to={submitWorkoutPath}>Log Attempt</Link>
+                  <Link className="btn actionButton" to={submitWorkoutPath}>New Attempt</Link>
                 </div>
               </div>
               <div className="col-7">

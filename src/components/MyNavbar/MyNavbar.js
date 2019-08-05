@@ -52,6 +52,9 @@ class MyNavBar extends React.Component {
             <NavLink tag={RRNavLink} to='/ExerciseDictionary' onClick={this.closeNav}>Exercise Dictionary</NavLink>
           </NavItem>
           <NavItem>
+            <NavLink tag={RRNavLink} to='/ExerciseStatistics' onClick={this.closeNav}>Workout Statistics</NavLink>
+          </NavItem>
+          <NavItem>
             <NavLink onClick={this.logMeOut}>Logout</NavLink>
           </NavItem>
           </Nav>
