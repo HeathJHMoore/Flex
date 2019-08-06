@@ -6,6 +6,7 @@ import TableRow from '../TableRow/TableRow';
 import exerciseData from '../../helpers/data/exerciseData';
 import workoutData from '../../helpers/data/workoutData';
 import WorkoutModal from '../WorkoutModal/WorkoutModal';
+import DeleteWorkoutModal from '../DeleteWorkoutModal/DeleteWorkoutModal';
 
 import './Workout.scss';
 
@@ -15,7 +16,8 @@ class Workout extends React.Component {
     workoutExercises : [],
     allWorkoutExercises : [],
     workoutMuscles : '',
-    workoutModalStatus : false
+    workoutModalStatus : false,
+    deleteWorkoutModalStatus : false
   }
 
   openModal = () => {
@@ -57,8 +59,13 @@ class Workout extends React.Component {
       .catch(err => console.error(err))
   }
 
+  toggleDeleteModal = () => {
+    this.setState({deleteWorkoutModalStatus : !this.state.deleteWorkoutModalStatus})
+  }
+
   deleteWorkout = () => {
     const deleteWorkoutEvent = this.props.deleteWorkout;
+    console.error(this.state.allWorkoutExercises)
     deleteWorkoutEvent(this.props.userWorkout.id, this.state.allWorkoutExercises);
   }
 
@@ -82,7 +89,7 @@ class Workout extends React.Component {
             <div className="workoutHeader mb-2 pl-1">
               <h4 className="text-left mb-1">{this.props.userWorkout.name}</h4>
               <p className="text-left mb-0">Muscle Groups: {workoutMuslces}</p>
-              <i class="fas fa-times-circle" onClick={this.deleteWorkout}></i>
+              <i class="fas fa-times-circle" onClick={this.toggleDeleteModal}></i>
             </div>
             <div className="workoutBody row p-3">
               <div className="col-5 pb-2 d-flex flex-column justify-content-center">
@@ -124,6 +131,14 @@ class Workout extends React.Component {
             workoutModalStatus={this.state.workoutModalStatus} 
             openModal={this.openModal}
             userWorkout={this.props.userWorkout}
+          />
+          <DeleteWorkoutModal
+            modalStatus={this.state.deleteWorkoutModalStatus}
+            toggleDeleteModal={this.toggleDeleteModal}
+            deleteWorkout={this.props.deleteWorkout}
+            userWorkout={this.props.userWorkout}
+            workoutExercises={this.state.allWorkoutExercises}
+            getWorkoutsByUser={this.props.getWorkoutsByUser}
           />
         </div>
 

@@ -42,7 +42,7 @@ class MyWorkouts extends React.Component {
   render() {
 
     const workoutBuilder = this.state.userWorkouts.map((userWorkout) => (
-      <Workout key={userWorkout.id} userWorkout={userWorkout} deleteWorkout={this.deleteWorkout}/>
+      <Workout key={userWorkout.id} userWorkout={userWorkout} deleteWorkout={this.deleteWorkout} getWorkoutsByUser={this.getWorkoutsByUser}/>
     ))
 
     return (
