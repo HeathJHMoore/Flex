@@ -46,8 +46,18 @@ class MyWorkouts extends React.Component {
     ))
 
     return (
-      <div className="row justify-content-around workoutsContainer">
+      // <div className="row justify-content-around workoutsContainer">
+      //   {workoutBuilder}
+      //   {workoutBuilder}
+      //   {workoutBuilder}
+      // </div>
+
+
+      <div className="row d-flex flex-nowrap workoutsContainer">
+       
         {workoutBuilder}
+ 
+       
       </div>
      
      
