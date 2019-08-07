@@ -298,11 +298,11 @@ class CreateNewWorkout extends React.Component {
           </div>
           { this.state.newExercises.length !== 0 ?
           <div className="row justify-content-center mb-2">
-            <div className="col-12 col-lg-11 workoutTable">
-                <div className="row tableHeaderRow mb-3">
-                  <div className="text-center align-middle col-4">Exercise</div>
-                  <div className="text-center align-middle col-3">Repetitions</div>
-                  <div className="text-center align-middle col-3">Weight</div>
+            <div className="col-12 col-lg-11 createWorkoutTable">
+                <div className="row tableHeaderRow mb-0 p-0 pl-1 align-middle text-center">
+                  <div className="text-center align-middle bg-secondary border border-dark col-4">Exercise</div>
+                  <div className="text-center align-middle bg-secondary border border-dark col-3">Repetitions</div>
+                  <div className="text-center align-middle bg-secondary border border-dark col-3">Weight</div>
                   <div className="text-center align-middle col-2"></div>
                 </div>
                 {newExerciseRows}
@@ -348,7 +348,7 @@ class CreateNewWorkout extends React.Component {
                           Choose an Exercise
                         </DropdownToggle>
                       </div>
-                        <DropdownMenu modifiers={{
+                        <DropdownMenu className="workoutMenu" modifiers={{
                           setMaxHeight: {
                               enabled: true,
                               order: 890,

@@ -21,6 +21,10 @@ label {
   color: white;
 }
 
+.workoutMenu {
+  -webkit-overflow-scrolling: touch;
+}
+
 // .createWorkoutColumnTables {
 //   background-color: rgb(146,146,146);
 //   font-size: 20px;
@@ -36,4 +40,22 @@ label {
 .createNewBlankSpace {
   border: solid 1px white !important;
   background-color: white;
+}
+
+.tableHeaderRow {
+  height: 55%;
+  color: white;
+  margin-bottom: 0px !important;
+}
+
+.createWorkoutTable {
+  .row {
+    margin-bottom: -15px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .createWorkoutTable {
+    font-size: 10px;
+  }
 }
