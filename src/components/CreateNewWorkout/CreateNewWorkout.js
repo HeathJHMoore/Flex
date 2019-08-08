@@ -286,7 +286,7 @@ class CreateNewWorkout extends React.Component {
     const isButtonActivated = this.state.activateSubmitWorkoutButton;
 
     return (
-      <div className="col-12 mt-2">
+      <div className="col-12 mt-2 mb-5">
           <div className="row justify-content-center mb-2">
             <label htmlFor="newWorkoutName" className="col-8 col-sm-5 col-lg-4 text-center">Workout Name</label>
           </div>
@@ -297,12 +297,12 @@ class CreateNewWorkout extends React.Component {
             <button className="btn actionButton" onClick={this.modalToggle}>Add An Exercise</button>
           </div>
           { this.state.newExercises.length !== 0 ?
-          <div className="row justify-content-center mb-2">
+          <div className="row justify-content-center mb-0">
             <div className="col-12 col-lg-11 createWorkoutTable">
-                <div className="row tableHeaderRow mb-0 p-0 pl-1 align-middle text-center">
-                  <div className="text-center align-middle bg-secondary border border-dark col-4">Exercise</div>
-                  <div className="text-center align-middle bg-secondary border border-dark col-3">Repetitions</div>
-                  <div className="text-center align-middle bg-secondary border border-dark col-3">Weight</div>
+                <div className="row tableHeaderRow mb-0 p-0 pl-2 align-middle text-center">
+                  <div className="d-flex align-items-center text-center justify-content-center bg-secondary border border-dark col-4">Exercise</div>
+                  <div className="d-flex align-items-center text-center justify-content-center bg-secondary border border-dark col-3">Repetitions</div>
+                  <div className="d-flex align-items-center text-center justify-content-center bg-secondary border border-dark col-3">Weight</div>
                   <div className="text-center align-middle col-2"></div>
                 </div>
                 {newExerciseRows}
@@ -327,8 +327,8 @@ class CreateNewWorkout extends React.Component {
           <div className="row justify-content-center">
           {
             (isButtonActivated && this.state.newExercises.length !==0)
-            ? <button id="submitButton" className="btn actionButton" onClick={this.submitWorkout}>Submit Workout</button>
-            : <button id="submitButton" className="btn actionButton" disabled>Submit Workout</button>
+            ? <button id="submitButton" className="btn actionButton mt-5" onClick={this.submitWorkout}>Submit Workout</button>
+            : <button id="submitButton" className="btn actionButton mt-5" disabled>Submit Workout</button>
           }
           <Popover placement="bottom" isOpen={this.state.isPopOverOpen} target="submitButton">
             <PopoverHeader className="popOverHeader text-center">WHOOPS!!!</PopoverHeader>

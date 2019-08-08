@@ -26,14 +26,14 @@ class NewWorkoutTable extends React.Component {
   render() {
     const {newExercise} = this.props;
     return (
-      <div className="row mb-1 p-0 pl-1">
-        <div className="col-4 text-center my-auto newExerciseRowColumn border border-dark pr-0 pl-0">{newExercise.name}</div>
-        <div className="col-3 text-center my-auto newExerciseRowColumn border border-dark pr-0 pl-0">{newExercise.repetitions}</div>
-        <div className="col-3 text-center my-auto newExerciseRowColumn border border-dark pr-0 pl-0">{newExercise.weight}</div>
-        <div className="col-2 d-flex justify-content-start pl-0 pr-1">
+      <div className="row mb-0 p-0 pl-2 newExerciseRow">
+        <div className="d-flex col-4 text-center my-auto newExerciseRowColumn align-items-center justify-content-center border border-dark pr-0 pl-0">{newExercise.name}</div>
+        <div className="d-flex col-3 text-center my-auto newExerciseRowColumn align-items-center justify-content-center border border-dark pr-0 pl-0">{newExercise.repetitions}</div>
+        <div className="d-flex col-3 text-center my-auto newExerciseRowColumn align-items-center justify-content-center border border-dark pr-0 pl-0">{newExercise.weight}</div>
+        <div className="col-2 d-flex justify-content-start align-items-center pl-0 pr-1">
           <div className="w-100 d-flex align-items-center justify-content-around">
-            <div><i class="fas fa-times deleteCross" onClick={this.deleteExerciseEvent}></i></div>
-            <div><i class="fas fa-pen penEdit" onClick={this.editExerciseEvent}></i></div>
+            <div className="d-flex align-items-center justify-content-center"><i class="fas fa-times deleteCross" onClick={this.deleteExerciseEvent}></i></div>
+            <div className="d-flex align-items-center justify-content-center"><i class="fas fa-pen penEdit" onClick={this.editExerciseEvent}></i></div>
           </div>
         </div>
       </div>
