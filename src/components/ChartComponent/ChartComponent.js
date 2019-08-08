@@ -6,26 +6,26 @@ import { Line } from 'react-chartjs-2';
 class ChartComponent extends React.Component {
 
   state = {
-    data : {
-      labels : ['cool', 'cooler', 'coolest'],
-      datasets : [
-        {
-          label : 'Numbers Are Cool',
-          data : [
-            150,
-            300,
-            500
-          ]
-        }
-      ]
-    }
+    selectedWorkout : '',
+    labels : [],
+    data : []
   }
 
   render() {
     return (
       <div>
         <Line
-           data={this.state.data}
+          //  data={this.state.data}
+           data={  
+             {
+              labels : this.state.labels,
+              datasets : [
+                {
+                  label : this.state.selectedWorkout.name,
+                  data : this.state.data
+                }
+              ]
+            }}
            options={{}}
         />
       </div>

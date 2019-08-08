@@ -12,8 +12,8 @@ class ExerciseStatistics extends React.Component {
   state = {
     userWorkouts : [],
     selectedWorkoutExercises : [],
-    userWorkoutExercises : [],
-    dropdownToggle : false
+    workoutDropdownToggle : false,
+    exerciseDropdownToggle : false,
   }
 
   componentDidMount() {
@@ -35,25 +35,56 @@ class ExerciseStatistics extends React.Component {
       .catch()
   }
 
+  chooseExercise = () => {}
+
   toggleWorkoutDropdown = () => {
-    this.setState({dropdownToggle : !this.state.dropdownToggle})
+    this.setState({workoutDropdownToggle : !this.state.workoutDropdownToggle})
   }
+
+
+  toggleExerciseDropdown = () => {
+    this.setState({exerciseDropdownToggle : !this.state.exerciseDropdownToggle})
+  }
+
 
   render() {
 
     const userWorkoutItems = this.state.userWorkouts.map((workout) => (
       <DropdownItem onClick={this.chooseWorkout} id={workout.id}>{workout.name}</DropdownItem>
     ))
+    const userExerciseItems = this.state.selectedWorkoutExercises.map((exercise) => (
+      <DropdownItem onClick={this.chooseExercise} id={exercise.id}>{exercise}</DropdownItem>
+
+      ))
+
+    const buttonDisable = this.state.selectedWorkoutExercises.length === 0 ? 'disabled' : ''
 
     return (
-      <div className="col-12">
-        <div className="row">
-          <Dropdown isOpen={this.state.dropdownToggle} toggle={this.toggleWorkoutDropdown}>
+      <div className="col-12 mt-2">
+        <div className="row justify-content-center mb-3">
+          <Dropdown isOpen={this.state.workoutDropdownToggle} toggle={this.toggleWorkoutDropdown}>
             <DropdownToggle caret>
               Choose A Workout
             </DropdownToggle>
             <DropdownMenu>
               {userWorkoutItems}
+            </DropdownMenu>
+          </Dropdown>
+        </div>
+        <div className="row justify-content-center mb-3">
+          <Dropdown isOpen={this.state.exerciseDropdownToggle} toggle={this.toggleExerciseDropdown}>
+            {this.state.selectedWorkoutExercises.length === 0 
+              ? 
+              <DropdownToggle caret disabled>
+                Choose An Exercise
+              </DropdownToggle>
+              :
+              <DropdownToggle caret>
+                Choose An Exercise
+              </DropdownToggle>
+              }
+            <DropdownMenu>
+              {userExerciseItems}
             </DropdownMenu>
           </Dropdown>
         </div>
