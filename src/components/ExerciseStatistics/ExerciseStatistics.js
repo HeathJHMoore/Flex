@@ -4,6 +4,7 @@ import 'firebase/auth';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import workoutData from '../../helpers/data/workoutData';
 import exerciseData from '../../helpers/data/exerciseData';
+import moment from 'moment';
 
 import Chart from '../ChartComponent/ChartComponent';
 
@@ -45,8 +46,16 @@ class ExerciseStatistics extends React.Component {
     const dateLabels = filteredHistoricExercises.map((successfulExercise) => (
       successfulExercise.date
     ))
-    dateLabels.sort(function(a, b){return a > b});
-    this.setState({trendedDateLabels : dateLabels})
+    dateLabels.sort(function(a, b){
+      const dateA = moment(a).format();
+      const dateB = moment(b).format();
+      // eslint-disable-next-line no-nested-ternary
+      return dateA > dateB ? 1 : dateA < dateB ? -1 : 0;
+    });
+    const updatedDateLabels = dateLabels.map((date) => {
+      return moment(date).format('MMMM Do, YYYY')
+    })
+    this.setState({trendedDateLabels : updatedDateLabels})
   }
 
   toggleWorkoutDropdown = () => {

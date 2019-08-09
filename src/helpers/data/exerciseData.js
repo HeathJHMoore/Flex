@@ -65,7 +65,7 @@ const unsuccessfulExerciseUpdateData = (unsuccessfulExercises) => new Promise((r
   unsuccessfulExercises.forEach((exercise, index) => {
     const updatedExercise = exercise;
     updatedExercise.isCurrent = false;
-    updatedExercise.date = moment().format('MMMM Do YYYY');
+    updatedExercise.date = moment().format();
     delete updatedExercise.name;
     axios.put(`${databaseURL}/userWorkoutExercises/${exercise.id}.json`, updatedExercise)
       .then(() => {
@@ -117,7 +117,7 @@ const successfulExerciseUpdateData = (successfulExercises) => new Promise((resol
     const successfulExercise = exercise;
     successfulExercise.isCurrent = false;
     successfulExercise.isSuccessful = true;
-    successfulExercise.date = moment().format('MMMM Do YYYY');
+    successfulExercise.date = moment().format();
     delete successfulExercise.name;
     axios.put(`${databaseURL}/userWorkoutExercises/${exercise.id}.json`, successfulExercise)
       .then(() => {

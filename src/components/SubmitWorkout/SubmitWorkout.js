@@ -43,7 +43,7 @@ class SubmitWorkout extends React.Component {
     const updatedWorkout = {
       name : this.state.currentWorkoutInfo.name,
       uid : this.state.currentWorkoutInfo.uid,
-      lastCompleted : moment().format('MMMM Do, YYYY')
+      lastCompleted : moment().format()
     }
     exercisesToSubmit.forEach((exercise) => {
       // the below code uses to split to split the repetitions 8-8-8 into three numbers ["8", "8", "8"].

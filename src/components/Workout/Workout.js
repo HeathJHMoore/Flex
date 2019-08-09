@@ -1,6 +1,7 @@
 import React from 'react';
 import { UncontrolledCarousel } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 
 import TableRow from '../TableRow/TableRow';
 import exerciseData from '../../helpers/data/exerciseData';
@@ -83,6 +84,7 @@ class Workout extends React.Component {
         header : exercise.name
       }
     ))
+    const lastCompleted = moment(this.props.userWorkout.lastCompleted).format('MMMM Do, YYYY');
     return (
         <div className="col-11 col-md-10 col-lg-6 mb-4 mt-4 mx-auto workoutCardContainer">
           <div className="workoutContainer">
@@ -95,7 +97,7 @@ class Workout extends React.Component {
               <div className="col-5 pb-2 d-flex flex-column justify-content-center">
                 <div className="mb-1">
                   <h5>Last Attempt:</h5>
-                  <h6>{this.props.userWorkout.lastCompleted}</h6>
+                  <h6>{lastCompleted}</h6>
                 </div>
                 <div>
                   <Link className="btn actionButton" to={submitWorkoutPath}>New Attempt</Link>
