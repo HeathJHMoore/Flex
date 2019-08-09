@@ -17,7 +17,10 @@ class ExerciseStatistics extends React.Component {
     historicSuccessfulExercises : [],
     workoutDropdownToggle : false,
     exerciseDropdownToggle : false,
+    selectedExerciseName : '',
     trendedDateLabels : [],
+    trendedWeights : [],
+    trendedWorkPerformed : []
   }
 
   componentDidMount() {
@@ -43,19 +46,38 @@ class ExerciseStatistics extends React.Component {
     const exerciseId = e.target.id;
     const filteredHistoricExercises = this.state.historicSuccessfulExercises.filter((exercise) => exercise.exerciseId === exerciseId)
     console.error(filteredHistoricExercises, 'this is historic exercises')
-    const dateLabels = filteredHistoricExercises.map((successfulExercise) => (
-      successfulExercise.date
+    const filteredSuccessfulExercises = filteredHistoricExercises.map((successfulExercise) => (
+      {
+        date : successfulExercise.date,
+        completedRepetitions : successfulExercise.completedRepetitions,
+        weight : successfulExercise.weight,
+        name : successfulExercise.name,
+        completedRepetitions : successfulExercise.completedRepetitions
+      }
     ))
-    dateLabels.sort(function(a, b){
-      const dateA = moment(a).format();
-      const dateB = moment(b).format();
+    filteredSuccessfulExercises.sort(function(a, b){
+      const dateA = moment(a.date).format();
+      const dateB = moment(b.date).format();
       // eslint-disable-next-line no-nested-ternary
       return dateA > dateB ? 1 : dateA < dateB ? -1 : 0;
     });
-    const updatedDateLabels = dateLabels.map((date) => {
-      return moment(date).format('MMMM Do, YYYY')
+    const updatedDateLabels = filteredSuccessfulExercises.map((exerciseObject) => {
+      return moment(exerciseObject.date).format('MMMM Do, YYYY')
     })
-    this.setState({trendedDateLabels : updatedDateLabels})
+    const updatedWeights = filteredSuccessfulExercises.map((exerciseObject) => {
+      return exerciseObject.weight
+    })
+    const updatedWorkDone = filteredSuccessfulExercises.map((exerciseObject) => {
+      const reducer = (accumulator, currentValue) => parseInt(accumulator) + parseInt(currentValue);
+      const completedRepetitionsSum = exerciseObject.completedRepetitions.split('-').reduce(reducer);
+      return (completedRepetitionsSum * exerciseObject.weight)
+    })
+    const exerciseName = filteredSuccessfulExercises[0].name;
+    this.setState({trendedDateLabels : updatedDateLabels, 
+      trendedWeights : updatedWeights, 
+      selectedExerciseName : exerciseName,
+      trendedWorkPerformed : updatedWorkDone
+    })
   }
 
   toggleWorkoutDropdown = () => {
@@ -109,7 +131,18 @@ class ExerciseStatistics extends React.Component {
             </DropdownMenu>
           </Dropdown>
         </div>
-        <Chart />
+        <Chart 
+        data={this.state.trendedWeights} 
+        labels={this.state.trendedDateLabels}
+        exerciseName={this.state.selectedExerciseName}
+        yAxisLabel='Weight (lbs)'
+         />
+        <Chart 
+        data={this.state.trendedWorkPerformed} 
+        labels={this.state.trendedDateLabels}
+        exerciseName={this.state.selectedExerciseName}
+        yAxisLabel='Total Weight Lifted (lbs)'
+         />
       </div>
     )
   }
