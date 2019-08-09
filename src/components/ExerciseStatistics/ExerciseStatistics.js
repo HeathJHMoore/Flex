@@ -131,6 +131,7 @@ class ExerciseStatistics extends React.Component {
             </DropdownMenu>
           </Dropdown>
         </div>
+        <h3 className="text-center mt-4 border-bottom border-dark">Exercise Report</h3>
         <Chart 
         data={this.state.trendedWeights} 
         labels={this.state.trendedDateLabels}
