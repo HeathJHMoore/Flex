@@ -32,7 +32,57 @@
   "userWorkoutExercise4" : {
     "weight" : 110,
     "repetitions" : "8-8-8",
-    "Date" : "07-11-2019",
+    "date" : "07-11-2019",
+    "isSuccessful" : true,
+    "isCurrent" : false,
+    "workoutId" : "workout1",
+    "exerciseId" : "exercise1",
+    "order" : 5
+  },
+  "userWorkoutExercise5" : {
+    "weight" : 120,
+    "repetitions" : "8-8-8",
+    "date" : "07-14-2019",
+    "isSuccessful" : true,
+    "isCurrent" : false,
+    "workoutId" : "workout1",
+    "exerciseId" : "exercise1",
+    "order" : 5
+  },
+  "userWorkoutExercise6" : {
+    "weight" : 125,
+    "repetitions" : "8-8-8",
+    "date" : "07-17-2019",
+    "isSuccessful" : true,
+    "isCurrent" : false,
+    "workoutId" : "workout1",
+    "exerciseId" : "exercise1",
+    "order" : 5
+  },
+  "userWorkoutExercise7" : {
+    "weight" : 125,
+    "repetitions" : "8-8-8",
+    "date" : "07-20-2019",
+    "isSuccessful" : true,
+    "isCurrent" : false,
+    "workoutId" : "workout1",
+    "exerciseId" : "exercise1",
+    "order" : 5
+  },
+  "userWorkoutExercise8" : {
+    "weight" : 130,
+    "repetitions" : "8-8-8",
+    "date" : "07-24-2019",
+    "isSuccessful" : true,
+    "isCurrent" : false,
+    "workoutId" : "workout1",
+    "exerciseId" : "exercise1",
+    "order" : 5
+  },
+  "userWorkoutExercise9" : {
+    "weight" : 135,
+    "repetitions" : "8-8-8",
+    "date" : "07-28-2019",
     "isSuccessful" : true,
     "isCurrent" : false,
     "workoutId" : "workout1",

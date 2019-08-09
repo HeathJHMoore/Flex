@@ -11,9 +11,12 @@ class ExerciseStatistics extends React.Component {
 
   state = {
     userWorkouts : [],
+    selectedWorkoutId : [],
     selectedWorkoutExercises : [],
+    historicSuccessfulExercises : [],
     workoutDropdownToggle : false,
     exerciseDropdownToggle : false,
+    trendedDateLabels : [],
   }
 
   componentDidMount() {
@@ -29,13 +32,22 @@ class ExerciseStatistics extends React.Component {
     exerciseData.getExercisesByWorkoutId(workoutId)
       .then((exercises) => {
         const currentExercises = exercises.filter((exercise) => exercise.isCurrent === true);
-        const distinctExerciseNames = currentExercises.map((exercise) => exercise.name)
-        this.setState({selectedWorkoutExercises : distinctExerciseNames})
+        const historicSuccessfulExercises = exercises.filter((exercise) => exercise.isSuccessful === true)
+        this.setState({selectedWorkoutExercises : currentExercises, selectedWorkoutId : workoutId, historicSuccessfulExercises : historicSuccessfulExercises})
       })
       .catch()
   }
 
-  chooseExercise = () => {}
+  chooseExercise = (e) => {
+    const exerciseId = e.target.id;
+    const filteredHistoricExercises = this.state.historicSuccessfulExercises.filter((exercise) => exercise.exerciseId === exerciseId)
+    console.error(filteredHistoricExercises, 'this is historic exercises')
+    const dateLabels = filteredHistoricExercises.map((successfulExercise) => (
+      successfulExercise.date
+    ))
+    dateLabels.sort(function(a, b){return a > b});
+    this.setState({trendedDateLabels : dateLabels})
+  }
 
   toggleWorkoutDropdown = () => {
     this.setState({workoutDropdownToggle : !this.state.workoutDropdownToggle})
@@ -53,7 +65,7 @@ class ExerciseStatistics extends React.Component {
       <DropdownItem onClick={this.chooseWorkout} id={workout.id}>{workout.name}</DropdownItem>
     ))
     const userExerciseItems = this.state.selectedWorkoutExercises.map((exercise) => (
-      <DropdownItem onClick={this.chooseExercise} id={exercise.id}>{exercise}</DropdownItem>
+      <DropdownItem onClick={this.chooseExercise} id={exercise.exerciseId}>{exercise.name}</DropdownItem>
 
       ))
 
