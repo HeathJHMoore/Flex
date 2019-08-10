@@ -4,11 +4,17 @@
 
 .submitExerciseHeaders {
   color: white;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, .9);
 }
 
 .submitExerciseNumbers {
   background-color:rgb(2,48,118);
   color: white;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, .9);
 }
 
 arrow {

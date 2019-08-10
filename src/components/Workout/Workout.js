@@ -102,7 +102,7 @@ class Workout extends React.Component {
             <div className="workoutBody row p-3">
               <div className="col-5 pb-2 d-flex flex-column justify-content-center">
                 <div className="mb-1">
-                  <h5>Last Attempt:</h5>
+                  <h5><strong>Last Attempt:</strong></h5>
                   <h6>{lastCompleted()}</h6>
                 </div>
                 <div>

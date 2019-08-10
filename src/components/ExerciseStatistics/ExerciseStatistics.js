@@ -183,13 +183,13 @@ class ExerciseStatistics extends React.Component {
              </div>
            </div>
          </div>
-         <div className="row">
-           <div className="col-6 d-flex justify-content-center">
+         <div className="row justify-content-around">
+           <div className="col-4 d-flex justify-content-center statisticInfo">
              <div>
              {this.state.selectedExerciseMaxWeight} lbs
              </div>
            </div>
-           <div className="col-6 d-flex justify-content-center">
+           <div className="col-4 d-flex justify-content-center statisticInfo">
              <div>
                {this.state.selectedExerciseTotalRepetitions}
              </div>
