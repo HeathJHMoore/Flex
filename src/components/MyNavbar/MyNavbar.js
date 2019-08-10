@@ -13,6 +13,8 @@ import PropTypes from 'prop-types';
 import firebase from 'firebase/app'
 import 'firebase/auth'
 
+import './MyNavbar.scss';
+
 
 
 class MyNavBar extends React.Component {
@@ -62,11 +64,12 @@ class MyNavBar extends React.Component {
       }
       return <Nav className="ml-auto" navbar />;
     };
+    const navColor = 'rgb(2,48,118)'
     return (
-      <div className="MyNavbar">
-        <Navbar color="dark" dark expand="md">
-          <NavbarBrand href="/">Flex</NavbarBrand>
-          <NavbarToggler onClick={this.toggle}/>
+      <div>
+        <Navbar className="MyNavbar" expand="md">
+          <NavbarBrand href="/" className="pl-2">Flex</NavbarBrand>
+          <NavbarToggler><i class="fas fa-bars" onClick={this.toggle}></i></NavbarToggler>
           <Collapse isOpen={this.state.isOpen} navbar>
            {buildNavbar()}
           </Collapse>

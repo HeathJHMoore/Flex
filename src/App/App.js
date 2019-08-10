@@ -60,23 +60,28 @@ class App extends React.Component {
       <BrowserRouter>
           <React.Fragment>
             <MyNavbar authed={authed}/>
-            <div className="container mt-2">
-              <div className="row d-flex justify-content-center">
-                <Switch>
-                  <PublicRoute path='/auth' component={Auth} authed={authed}/>
-                  <PrivateRoute path='/MyDashboard' component={MyDashboard} authed={authed}/>
+            <div className="backgroundContainer1 h-100"></div>
+            <div className="backgroundContainer2 h-100"></div>
+            <div className="appContainer">
+              <div className="container">
+                <div className="row d-flex justify-content-center">
+                  <Switch>
+                    <PublicRoute path='/auth' component={Auth} authed={authed}/>
+                    <PrivateRoute path='/MyDashboard' component={MyDashboard} authed={authed}/>
 
-                  <PrivateRoute path='/ExerciseDictionary' component={ExerciseDictionary} authed={authed}/>
-                  {/* <PrivateRoute path='/ExcerciseStats/:id' component={ExerciseStats} authed={authed}/> */}
-                  <PrivateRoute path='/CreateNewWorkout' component={CreateNewWorkout} authed={authed}/>
-                  <PrivateRoute path='/SubmitWorkout/:workoutId' component={SubmitWorkout} authed={authed}/>
-                  <PrivateRoute path='/ExerciseStatistics' component={ExerciseStatistics} authed={authed}/>
-                  <Redirect from="*" to="/auth"/>
-                </Switch>
+                    <PrivateRoute path='/ExerciseDictionary' component={ExerciseDictionary} authed={authed}/>
+                    {/* <PrivateRoute path='/ExcerciseStats/:id' component={ExerciseStats} authed={authed}/> */}
+                    <PrivateRoute path='/CreateNewWorkout' component={CreateNewWorkout} authed={authed}/>
+                    <PrivateRoute path='/SubmitWorkout/:workoutId' component={SubmitWorkout} authed={authed}/>
+                    <PrivateRoute path='/ExerciseStatistics' component={ExerciseStatistics} authed={authed}/>
+                    <Redirect from="*" to="/auth"/>
+                  </Switch>
+                </div>
               </div>
             </div>
           </React.Fragment>
       </BrowserRouter>
+      
     );
   }
 }

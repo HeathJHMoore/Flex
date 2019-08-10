@@ -65,7 +65,7 @@ class SubmitExerciseRow extends React.Component {
     }
     // this.state.isCollapseOpen ? 'row justify-content-between hvr-underline-from-center pb-1' : 'row justify-content-between hvr-underline-from-center-away pb-1'
     return (
-      <div className="row p-2 ml-1 mr-1 submitExerciseRowContainer">
+      <div className="row p-2 ml-1 mr-1 submitExerciseRowContainer bg-white">
         <div className="col-12">
           <div className={exerciseRowContainerClass()}>
             <p className="col-9 my-auto exerciseName">Exercise {exercise.order}: {exercise.name}</p>

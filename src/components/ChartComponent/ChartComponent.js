@@ -11,7 +11,7 @@ class ChartComponent extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="col-12 col-lg-6 bg-white p-1 border border-dark">
         <Line
            data={  
              {

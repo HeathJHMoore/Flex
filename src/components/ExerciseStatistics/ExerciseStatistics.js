@@ -157,21 +157,23 @@ class ExerciseStatistics extends React.Component {
           </Dropdown>
         </div>
         <h3 className="text-center mt-4 border-bottom border-dark">Exercise Report</h3>
-        <Chart 
-        data={this.state.trendedWeights} 
-        labels={this.state.trendedDateLabels}
-        exerciseName={this.state.selectedExerciseName}
-        yAxisLabel='Weight (lbs)'
-         />
-        <Chart 
-        data={this.state.trendedWorkPerformed} 
-        labels={this.state.trendedDateLabels}
-        exerciseName={this.state.selectedExerciseName}
-        yAxisLabel='Total Weight Lifted (lbs)'
-         />
+        <div className="row">
+          <Chart
+          data={this.state.trendedWeights} 
+          labels={this.state.trendedDateLabels}
+          exerciseName={this.state.selectedExerciseName}
+          yAxisLabel='Weight (lbs)'
+          />
+          <Chart 
+          data={this.state.trendedWorkPerformed} 
+          labels={this.state.trendedDateLabels}
+          exerciseName={this.state.selectedExerciseName}
+          yAxisLabel='Total Weight Lifted (lbs)'
+          />
+        </div>
          <div className="row mt-3">
            <div className="col-6 d-flex justify-content-center statisticHeaders text-center align-items-center">
-             <div>
+             <div className="">
              <p>Max Weight</p>
              </div>
            </div>

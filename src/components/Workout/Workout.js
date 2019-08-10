@@ -93,7 +93,7 @@ class Workout extends React.Component {
     }
     return (
         <div className="col-11 col-md-10 col-lg-6 mb-4 mt-3 mx-auto workoutCardContainer">
-          <div className="workoutContainer">
+          <div className="workoutContainer bg-white">
             <div className="workoutHeader mb-2 pl-1">
               <h4 className="text-left mb-1">{this.props.userWorkout.name}</h4>
               <p className="text-left mb-0">Muscle Groups: {workoutMuslces}</p>

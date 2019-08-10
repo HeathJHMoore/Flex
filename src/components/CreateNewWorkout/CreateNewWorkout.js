@@ -430,8 +430,8 @@ class CreateNewWorkout extends React.Component {
              : 
              <ModalFooter>
              {(this.state.selectedExerciseName !== '' && this.state.selectedExerciseRepetitions !== '' && this.state.selectedExerciseWeight !== 0)
-               ? <Button color="primary" className="actionButton" onClick={this.submitExercise}>Submit Exercise</Button>
-               : <Button color="primary" className="actionButton" onClick={this.submitExercise} disabled>Submit Exercise</Button>
+               ? <Button color="primary" className="actionButton shadow" onClick={this.submitExercise}>Submit Exercise</Button>
+               : <Button color="primary" className="actionButton shadow" onClick={this.submitExercise} disabled>Submit Exercise</Button>
              }
              <Button color="danger" onClick={this.modalToggle}>Cancel</Button>
            </ModalFooter>

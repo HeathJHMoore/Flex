@@ -10,5 +10,36 @@
 body {
   // font-family: 'Raleway', sans-serif;
   font-family: 'Red Hat Display', sans-serif;
-  background-color: rgb(255, 255, 255);
+  height: fit-content;
+  background-color: rgba(52,58,64, .5)
 }
+
+.appContainer {
+  z-index: 1;
+}
+
+.backgroundContainer1 {
+  background-color: silver;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 0;
+  -webkit-clip-path: polygon(0 0, 84% 55%, 27% 40%, 84% 82%, 0 100%);
+  clip-path: polygon(0 0, 84% 55%, 27% 40%, 84% 82%, 0 100%);
+  // -webkit-clip-path: polygon(0 0, 90% 62%, 74% 81%, 100% 100%, 0 100%);
+  // clip-path: polygon(0 0, 90% 62%, 74% 81%, 100% 100%, 0 100%);
+}
+
+.backgroundContainer2 {
+  // background-color: rgb(2,48,118);
+  background-color: white;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 0;
+  -webkit-clip-path: polygon(100% 100%, 25% 39%, 100% 58%);
+  clip-path: polygon(100% 100%, 25% 39%, 100% 58%);
+  // -webkit-clip-path: polygon(0 0, 90% 62%, 74% 81%, 100% 100%, 0 100%);
+  // clip-path: polygon(0 0, 90% 62%, 74% 81%, 100% 100%, 0 100%);
+}
+
