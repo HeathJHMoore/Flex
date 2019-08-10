@@ -7,6 +7,7 @@ import exerciseData from '../../helpers/data/exerciseData';
 import moment from 'moment';
 
 import Chart from '../ChartComponent/ChartComponent';
+import './ExerciseStatistics.scss'
 
 class ExerciseStatistics extends React.Component {
 
@@ -20,7 +21,9 @@ class ExerciseStatistics extends React.Component {
     selectedExerciseName : '',
     trendedDateLabels : [],
     trendedWeights : [],
-    trendedWorkPerformed : []
+    trendedWorkPerformed : [],
+    selectedExerciseMaxWeight : '',
+    selectedExerciseTotalRepetitions : ''
   }
 
   componentDidMount() {
@@ -29,6 +32,26 @@ class ExerciseStatistics extends React.Component {
         this.setState({userWorkouts : workouts})
         })
       .catch(console.error('you failed getting workouts'))
+  }
+
+  getMaxWeight = (array) => {
+    let maxWeight = 0;
+    array.forEach((item) => {
+      if (item.weight > maxWeight) {
+        maxWeight = item.weight
+      }
+    })
+    return maxWeight;
+  }
+
+  getTotalCompletedRepetitions = (array) => {
+    let totalReps = 0
+    array.forEach((item) => {
+      const reducer = (accumulator, currentValue) => parseInt(accumulator) + parseInt(currentValue);
+      const completedRepetitionsSum = item.completedRepetitions.split('-').reduce(reducer);
+      totalReps += completedRepetitionsSum
+    })
+    return totalReps
   }
 
   chooseWorkout = (e) => {
@@ -72,11 +95,15 @@ class ExerciseStatistics extends React.Component {
       const completedRepetitionsSum = exerciseObject.completedRepetitions.split('-').reduce(reducer);
       return (completedRepetitionsSum * exerciseObject.weight)
     })
+    const maxWeight = this.getMaxWeight(filteredSuccessfulExercises);
+    const getTotalCompletedRepetitions = this.getTotalCompletedRepetitions(filteredSuccessfulExercises);
     const exerciseName = filteredSuccessfulExercises[0].name;
     this.setState({trendedDateLabels : updatedDateLabels, 
       trendedWeights : updatedWeights, 
       selectedExerciseName : exerciseName,
-      trendedWorkPerformed : updatedWorkDone
+      trendedWorkPerformed : updatedWorkDone,
+      selectedExerciseMaxWeight : maxWeight,
+      selectedExerciseTotalRepetitions : getTotalCompletedRepetitions
     })
   }
 
@@ -100,10 +127,8 @@ class ExerciseStatistics extends React.Component {
 
       ))
 
-    const buttonDisable = this.state.selectedWorkoutExercises.length === 0 ? 'disabled' : ''
-
     return (
-      <div className="col-12 mt-2">
+      <div className="col-12 mt-2 mb-5">
         <div className="row justify-content-center mb-3">
           <Dropdown isOpen={this.state.workoutDropdownToggle} toggle={this.toggleWorkoutDropdown}>
             <DropdownToggle caret>
@@ -144,6 +169,30 @@ class ExerciseStatistics extends React.Component {
         exerciseName={this.state.selectedExerciseName}
         yAxisLabel='Total Weight Lifted (lbs)'
          />
+         <div className="row mt-3">
+           <div className="col-6 d-flex justify-content-center statisticHeaders text-center align-items-center">
+             <div>
+             <p>Max Weight</p>
+             </div>
+           </div>
+           <div className="col-6 d-flex justify-content-center statisticHeaders text-center align-items-center">
+             <div>
+             <p>Total Completed Repetitions</p>
+             </div>
+           </div>
+         </div>
+         <div className="row">
+           <div className="col-6 d-flex justify-content-center">
+             <div>
+             {this.state.selectedExerciseMaxWeight} lbs
+             </div>
+           </div>
+           <div className="col-6 d-flex justify-content-center">
+             <div>
+               {this.state.selectedExerciseTotalRepetitions}
+             </div>
+           </div>
+         </div>
       </div>
     )
   }

@@ -24,6 +24,72 @@ arrow {
   color: green;
 }
 
+@keyframes borderFromCenter {
+  from {
+    left : 51%; 
+    right: 51%;
+  }
+
+  to {
+    left : 1%; 
+    right: 1%;
+  }
+}
+
+@keyframes undoBorderFromCenter {
+  from {
+    left: 0%;
+    right: 0%;
+  }
+
+  to {
+    left: 51%;
+    right: 51%;
+  }
+
+}
+
+/* Underline From Center */
+.hvr-underline-from-center {
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(10px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  position: relative;
+}
+.hvr-underline-from-center:before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  left: 0%;
+  right : 0%;
+  background: black;
+  height: 1px;
+  animation-name: borderFromCenter;
+  animation-duration: .5s;
+}
+
+.hvr-underline-from-center-away {
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(10px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  position: relative;
+}
+
+.hvr-underline-from-center-away::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  left: 51%;
+  right : 51%;
+  background: black;
+  height: 1px;
+  animation-name: undoBorderFromCenter;
+  animation-duration: .3s;
+}
 
 @media screen and (max-width: 768px) {
   .exerciseName {

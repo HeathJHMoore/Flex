@@ -9,6 +9,7 @@ class SubmitExerciseRow extends React.Component {
   state = {
     exercise : {},
     isCollapseOpen : false,
+    isPageLoad : true,
     isSaved : false
   }
 
@@ -16,7 +17,7 @@ class SubmitExerciseRow extends React.Component {
     this.setState({exercise : this.props.exercise})
   }
 
-  collapseToggle = () => this.setState({isCollapseOpen : !this.state.isCollapseOpen})
+  collapseToggle = () => this.setState({isCollapseOpen : !this.state.isCollapseOpen, isPageLoad : false})
 
   saveExercisePerformance = () => {
     const set1 = document.getElementById(this.state.exercise.id + '1').value;
@@ -35,10 +36,22 @@ class SubmitExerciseRow extends React.Component {
     const input1 = this.state.exercise.id + '1'
     const input2 = this.state.exercise.id + '2'
     const input3 = this.state.exercise.id + '3'
+    const exerciseRowContainerClass = () => {
+      let containerClassName = ''
+      if (this.state.isPageLoad) {
+        containerClassName = 'row justify-content-between pb-1'
+      } else if (this.state.isCollapseOpen) {
+        containerClassName = 'row justify-content-between hvr-underline-from-center pb-1'
+      } else if (!this.state.isCollapseOpen) {
+        containerClassName = 'row justify-content-between hvr-underline-from-center-away pb-1'
+      }
+      return containerClassName
+    }
+    // this.state.isCollapseOpen ? 'row justify-content-between hvr-underline-from-center pb-1' : 'row justify-content-between hvr-underline-from-center-away pb-1'
     return (
       <div className="row p-2 ml-1 mr-1 submitExerciseRowContainer">
         <div className="col-12">
-          <div className="row border-bottom justify-content-between">
+          <div className={exerciseRowContainerClass()}>
             <p className="col-9 my-auto exerciseName">Exercise {exercise.order}: {exercise.name}</p>
             {this.state.isSaved ? <i class="fas fa-check-square col-1 my-auto"></i> : ''}
             <i className="fas fa-arrow-down arrow col-1 text-right my-auto" onClick={this.collapseToggle}></i>
@@ -64,7 +77,7 @@ class SubmitExerciseRow extends React.Component {
             </div>
           </div> 
           <div className="row mt-4 text-center justify-content-center">
-            <h5 className='text-center border-bottom'>Completed Repetitions</h5>
+            <h5 className='text-center border-bottom border-dark'>Completed Repetitions</h5>
           </div>
           <div className="row mt-3">
             <div className="col-5 text-center my-auto">
