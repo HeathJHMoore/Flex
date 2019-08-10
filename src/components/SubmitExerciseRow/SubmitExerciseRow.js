@@ -10,7 +10,10 @@ class SubmitExerciseRow extends React.Component {
     exercise : {},
     isCollapseOpen : false,
     isPageLoad : true,
-    isSaved : false
+    isSaved : false,
+    set1 : '',
+    set2 : '',
+    set3 : ''
   }
 
   componentDidMount() {
@@ -28,6 +31,19 @@ class SubmitExerciseRow extends React.Component {
     updateExerciseRepetitions(this.state.exercise.id, completedRepetitions);
     this.collapseToggle();
     this.setState({isSaved : true})
+  }
+
+  set1State = (e) => {
+    const setValue = e.target.value
+    this.setState({set1 : setValue})
+  }
+  set2State = (e) => {
+    const setValue = e.target.value
+    this.setState({set2 : setValue})
+  }
+  set3State = (e) => {
+    const setValue = e.target.value
+    this.setState({set3 : setValue})
   }
 
   render() {
@@ -84,7 +100,7 @@ class SubmitExerciseRow extends React.Component {
               Set 1
             </div>
             <div className="col-7">
-              <input id={input1} className="form-control" placeholder="ex. 8" type="number"></input>
+              <input id={input1} className="form-control" placeholder="ex. 8" type="number" onChange={this.set1State}></input>
             </div>
           </div>
           <div className="row mt-3">
@@ -92,7 +108,7 @@ class SubmitExerciseRow extends React.Component {
               Set 2
             </div>
             <div className="col-7">
-              <input id={input2} className="form-control" placeholder="ex. 8" type="number"></input>
+              <input id={input2} className="form-control" placeholder="ex. 8" type="number" onChange={this.set2State}></input>
             </div>
           </div>
           <div className="row mt-3">
@@ -100,11 +116,18 @@ class SubmitExerciseRow extends React.Component {
               Set 3
             </div>
             <div className="col-7">
-              <input id={input3} className="form-control" placeholder="ex. 8" type="number"></input>
+              <input id={input3} className="form-control" placeholder="ex. 8" type="number" onChange={this.set3State}></input>
             </div>
           </div>
           <div className="row justify-content-center mt-4 mb-2">
-              <button className="btn btn-danger actionButton col-6 col-md-5"onClick={this.saveExercisePerformance}>Save</button>
+            {
+              this.state.set1 !== ''
+              && this.state.set2 !== ''
+              && this.state.set3 !== ''
+              ? <button className="btn btn-danger actionButton col-6 col-md-5"onClick={this.saveExercisePerformance}>Save</button>
+              : <button className="btn btn-danger actionButton col-6 col-md-5"onClick={this.saveExercisePerformance} disabled>Save</button>
+            }
+              {/* <button className="btn btn-danger actionButton col-6 col-md-5"onClick={this.saveExercisePerformance}>Save</button> */}
           </div>
         </Collapse>
       </div>
