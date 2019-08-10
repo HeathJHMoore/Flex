@@ -76,18 +76,18 @@ class SubmitExerciseRow extends React.Component {
         <Collapse isOpen={this.state.isCollapseOpen} className="col-12">
           <div className="row justify-content-around mt-3">
             <div className="col-4">
-              <div className="row justify-content-center text-center">
+              <div className="row justify-content-center text-center bg-dark submitExerciseHeaders">
                 Prescribed Repetitions
               </div>
-              <div className="row justify-content-center">
+              <div className="row justify-content-center submitExerciseNumbers">
                 {exercise.repetitions}
               </div>
             </div>
             <div className="col-4">
-              <div className="row justify-content-center text-center">
+              <div className="row justify-content-center text-center bg-dark submitExerciseHeaders">
                 Prescribed Weight
               </div>
-              <div className="row justify-content-center">
+              <div className="row justify-content-center submitExerciseNumbers">
                 {exercise.weight}
               </div>
             </div>

@@ -22,7 +22,7 @@ class ExerciseDictionary extends React.Component {
     ))
 
     return (
-      <div className="col-12">
+      <div className="col-12 mt-2">
         <div className="row">
           {exerciseCards}
         </div>

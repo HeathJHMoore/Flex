@@ -130,7 +130,7 @@ class ExerciseStatistics extends React.Component {
     return (
       <div className="col-12 mt-2 mb-5">
         <div className="row justify-content-center mb-3">
-          <Dropdown isOpen={this.state.workoutDropdownToggle} toggle={this.toggleWorkoutDropdown}>
+          <Dropdown isOpen={this.state.workoutDropdownToggle} toggle={this.toggleWorkoutDropdown} className="statisticDropdown">
             <DropdownToggle caret>
               Choose A Workout
             </DropdownToggle>
@@ -140,7 +140,7 @@ class ExerciseStatistics extends React.Component {
           </Dropdown>
         </div>
         <div className="row justify-content-center mb-3">
-          <Dropdown isOpen={this.state.exerciseDropdownToggle} toggle={this.toggleExerciseDropdown}>
+          <Dropdown isOpen={this.state.exerciseDropdownToggle} toggle={this.toggleExerciseDropdown} className="statisticDropdown">
             {this.state.selectedWorkoutExercises.length === 0 
               ? 
               <DropdownToggle caret disabled>
@@ -171,15 +171,15 @@ class ExerciseStatistics extends React.Component {
           yAxisLabel='Total Weight Lifted (lbs)'
           />
         </div>
-         <div className="row mt-3">
-           <div className="col-6 d-flex justify-content-center statisticHeaders text-center align-items-center">
-             <div className="">
-             <p>Max Weight</p>
+         <div className="row mt-3 justify-content-around">
+           <div className="col-4 d-flex justify-content-center statisticHeaders text-center align-items-center align-middle">
+             <div>
+             <p className="my-auto">Max Weight</p>
              </div>
            </div>
-           <div className="col-6 d-flex justify-content-center statisticHeaders text-center align-items-center">
+           <div className="col-4 d-flex justify-content-center statisticHeaders text-center align-items-center align-middle">
              <div>
-             <p>Total Completed Repetitions</p>
+             <p className="my-auto">Total Completed Repetitions</p>
              </div>
            </div>
          </div>
