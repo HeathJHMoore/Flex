@@ -20,7 +20,8 @@ class ChartComponent extends React.Component {
                 {
                   label : this.props.exerciseName,
                   data : this.props.data,
-                  backgroundColor : 'rgba(2,48,118, .6)',
+                  // backgroundColor : 'rgba(2,48,118, .6)',
+                  backgroundColor : 'rgba(239,99,48, .8)',
                   pointBackgroundColor : 'black'
                 }
               ]
