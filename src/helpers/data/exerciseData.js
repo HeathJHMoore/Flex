@@ -126,7 +126,8 @@ const successfulExerciseUpdateData = (successfulExercises) => new Promise((resol
         delete successfulExercise.completedRepetitions;
         successfulExercise.isCurrent = true;
         successfulExercise.isSuccessful = false;
-        if (compoundRepetitions.indexOf(successfulExercise.repetitions) !== -1) {
+        // if (compoundRepetitions.indexOf(successfulExercise.repetitions) !== -1) {
+        if (successfulExercise.type === 'Compound') {
           const oldReps = compoundRepetitions.indexOf(successfulExercise.repetitions);
           if (oldReps === (compoundRepetitions.length -1)) {
             const newReps = compoundRepetitions[0];

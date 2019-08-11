@@ -53,15 +53,30 @@ class SubmitExerciseRow extends React.Component {
     const input2 = this.state.exercise.id + '2'
     const input3 = this.state.exercise.id + '3'
     const exerciseRowContainerClass = () => {
-      let containerClassName = ''
+      let containerClassName = '';
+      let arrowClassName = ''
       if (this.state.isPageLoad) {
         containerClassName = 'row justify-content-between pb-1'
+        arrowClassName = 'fas fa-arrow-down arrow col-1 text-right my-auto'
       } else if (this.state.isCollapseOpen) {
         containerClassName = 'row justify-content-between hvr-underline-from-center pb-1'
+        arrowClassName = 'fas fa-arrow-down rotateArrowUp col-1 text-right my-auto'
       } else if (!this.state.isCollapseOpen) {
         containerClassName = 'row justify-content-between hvr-underline-from-center-away pb-1'
+        arrowClassName = 'fas fa-arrow-down arrow col-1 text-right my-auto'
       }
       return containerClassName
+    }
+    const arrowContainerClass = () => {
+      let arrowClassName = ''
+      if (this.state.isPageLoad) {
+        arrowClassName = 'fas fa-arrow-down arrow col-1 text-right my-auto'
+      } else if (this.state.isCollapseOpen) {
+        arrowClassName = 'fas fa-arrow-down rotateArrowUp col-1 text-right my-auto'
+      } else if (!this.state.isCollapseOpen) {
+        arrowClassName = 'fas fa-arrow-down arrow col-1 text-right my-auto'
+      }
+      return arrowClassName
     }
     // this.state.isCollapseOpen ? 'row justify-content-between hvr-underline-from-center pb-1' : 'row justify-content-between hvr-underline-from-center-away pb-1'
     return (
@@ -70,7 +85,7 @@ class SubmitExerciseRow extends React.Component {
           <div className={exerciseRowContainerClass()}>
             <p className="col-9 my-auto exerciseName">Exercise {exercise.order}: {exercise.name}</p>
             {this.state.isSaved ? <i class="fas fa-check-square col-1 my-auto"></i> : ''}
-            <i className="fas fa-arrow-down arrow col-1 text-right my-auto" onClick={this.collapseToggle}></i>
+            <i className={arrowContainerClass()} onClick={this.collapseToggle}></i>
           </div>
         </div>
         <Collapse isOpen={this.state.isCollapseOpen} className="col-12">

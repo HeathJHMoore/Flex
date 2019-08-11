@@ -17,13 +17,15 @@
   box-shadow: 2px 2px 6px rgba(0, 0, 0, .9);
 }
 
-arrow {
-  transition-duration: .2s;
+
+.arrow {
+  transform: rotate(0deg);
+  transition-duration: .5s;
 }
 
 .rotateArrowUp {
-  transform: rotate(180);
-  transition-duration: .2s;
+  transform: rotateX(180deg);
+  transition-duration: .5s;
 }
 
 .setNames {
