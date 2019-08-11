@@ -65,7 +65,7 @@
   "exercise10" : {
     "name": "Lat Pulldown",
     "type": "Isolation",
-    "image": "https://www.bodybuilding.com/exercises/exerciseImages/sequences/10/Male/m/10_2.jpg",
+    "image": "https://www.bodybuilding.com/exercises/exerciseImages/sequences/10/Female/m/10_2.jpg",
     "link": "https://www.bodybuilding.com/exercises/wide-grip-lat-pulldown",
     "muscleGroups": ["Back"]
   }, 
@@ -86,7 +86,7 @@
   "exercise13" : {
     "name": "Incline Hammer Curls",
     "type": "Isolation",
-    "image": "https://www.bodybuilding.com/exercises/exerciseImages/sequences/882/Male/m/882_2.jpg",
+    "image": "https://www.bodybuilding.com/exercises/exerciseImages/sequences/882/Female/m/882_2.jpg",
     "link": "https://www.bodybuilding.com/exercises/incline-hammer-curls",
     "muscleGroups": ["Biceps"]
   },

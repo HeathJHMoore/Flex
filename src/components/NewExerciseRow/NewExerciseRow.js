@@ -27,9 +27,9 @@ class NewWorkoutTable extends React.Component {
     const {newExercise} = this.props;
     return (
       <div className="row mb-0 p-0 pl-2 newExerciseRow">
-        <div className="d-flex col-4 text-center my-auto newExerciseRowColumn align-items-center justify-content-center border border-dark pr-0 pl-0">{newExercise.name}</div>
-        <div className="d-flex col-3 text-center my-auto newExerciseRowColumn align-items-center justify-content-center border border-dark pr-0 pl-0">{newExercise.repetitions}</div>
-        <div className="d-flex col-3 text-center my-auto newExerciseRowColumn align-items-center justify-content-center border border-dark pr-0 pl-0">{newExercise.weight}</div>
+        <div className="d-flex col-4 text-center my-auto newExerciseRowColumn align-items-center justify-content-center pr-0 pl-0">{newExercise.name}</div>
+        <div className="d-flex col-3 text-center my-auto newExerciseRowColumn align-items-center justify-content-center pr-0 pl-0">{newExercise.repetitions}</div>
+        <div className="d-flex col-3 text-center my-auto newExerciseRowColumn align-items-center justify-content-center pr-0 pl-0">{newExercise.weight}</div>
         <div className="col-2 d-flex justify-content-start align-items-center pl-0 pr-1">
           <div className="w-100 d-flex align-items-center justify-content-around">
             <div className="d-flex align-items-center justify-content-center"><i class="fas fa-times deleteCross" onClick={this.deleteExerciseEvent}></i></div>

@@ -300,9 +300,9 @@ class CreateNewWorkout extends React.Component {
           <div className="row justify-content-center mb-0">
             <div className="col-12 col-lg-11 createWorkoutTable">
                 <div className="row tableHeaderRow mb-0 p-0 pl-2 align-middle text-center">
-                  <div className="d-flex align-items-center text-center justify-content-center bg-secondary border border-dark col-4">Exercise</div>
-                  <div className="d-flex align-items-center text-center justify-content-center bg-secondary border border-dark col-3">Repetitions</div>
-                  <div className="d-flex align-items-center text-center justify-content-center bg-secondary border border-dark col-3">Weight</div>
+                  <div className="d-flex align-items-center text-center justify-content-center bg-secondary topRow col-4">Exercise</div>
+                  <div className="d-flex align-items-center text-center justify-content-center bg-secondary topRow col-3">Repetitions</div>
+                  <div className="d-flex align-items-center text-center justify-content-center bg-secondary topRow col-3">Weight</div>
                   <div className="text-center align-middle col-2"></div>
                 </div>
                 {newExerciseRows}

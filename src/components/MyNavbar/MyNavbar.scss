@@ -15,7 +15,7 @@ nav {
     background-color: rgb(2,48,118) !important;
     margin: 0px;
     padding-bottom: 10px;
-    padding-left: 2px;
+    padding-left: 3px;
   }
   .navbar-brand {
     font-family: 'Lexend Tera', sans-serif;
@@ -68,6 +68,9 @@ nav {
   nav {
     li {
       padding-left: 3%;
+    }
+    .navbar-collapse {
+      padding-bottom: 0px;
     }
   }
 }

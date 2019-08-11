@@ -48,6 +48,7 @@ const getExercisesByWorkoutId = (workoutId) => new Promise((resolve, reject) => 
                 workoutExercise.name = exercise.name;
                 workoutExercise.image = exercise.image;
                 workoutExercise.muscles = exercise.muscleGroups;
+                workoutExercise.type = exercise.type;
               }
             })
           });

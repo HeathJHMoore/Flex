@@ -48,10 +48,9 @@ label {
   margin-bottom: 0px !important;
 }
 
-.createWorkoutTable {
-  .row {
-
-  }
+.topRow {
+  background-color: rgb(52,58,64) !important;
+  border : solid 1px black;
 }
 
 @media screen and (max-width: 768px) {
