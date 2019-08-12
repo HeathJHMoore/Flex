@@ -85,7 +85,7 @@ class SubmitWorkout extends React.Component {
           <h2 className="text-center my-2">{this.state.currentWorkoutInfo.name}</h2>
           {exerciseRows}
           <div className="row mt-3 justify-content-center text-center">
-            <button className="btn btn-danger actionButton col-6 col-md-5" onClick={this.submitWorkout}>Submit Workout</button>
+            <button className="btn actionButton col-6 col-md-5" onClick={this.submitWorkout}>Submit Workout</button>
           </div>
         </div>
     )

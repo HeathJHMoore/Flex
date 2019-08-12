@@ -40,7 +40,7 @@ class CreateNewWorkout extends React.Component {
     selectedExerciseRepetitions : '',
     selectedExerciseWeight : 50,
     selectedExerciseId : '',
-    workoutName : '',
+    workoutName : 'New Workout Name',
     userWorkouts : [],
     compoundRepetitions : [
       "6-6-6",
@@ -95,7 +95,11 @@ class CreateNewWorkout extends React.Component {
 
   setWorkoutName = (e) => {
     const newWorkoutName = e.target.value;
+    if (newWorkoutName === '') {
+      this.setState({workoutName : ''})
+    } else {
     this.setState({workoutName : newWorkoutName})
+    }
     const userWorkoutNames = this.state.userWorkouts.map((workout) => {
       return workout.name;
     })
@@ -287,15 +291,22 @@ class CreateNewWorkout extends React.Component {
 
     return (
       <div className="col-12 mt-2 mb-5">
-          <div className="row justify-content-center mb-2">
-            <label htmlFor="newWorkoutName" className="col-8 col-sm-5 col-lg-4 text-center">Workout Name</label>
-          </div>
-          <div className="row justify-content-center mb-3">
-            <input type="text" placeholder="Enter Workout Name Here" id="newWorkoutName" className="col-8 col-sm-5 col-lg-4 text-center" onChange={this.setWorkoutName}></input>
+          {/* <div className="row justify-content-center mb-2">
+            <label htmlFor="newWorkoutName" className="col-8 col-sm-5 col-lg-4 text-center"><strong>{this.state.workoutName}</strong></label>
+          </div> */}
+          <div className="row justify-content-center mb-3 mt-3">
+            <input type="text" placeholder="Enter Workout Name Here" id="newWorkoutName" className="col-8 col-sm-5 col-lg-4 text-center createNewWorkoutborder" onChange={this.setWorkoutName}></input>
           </div>
           <div className="row justify-content-center mb-4">
             <button className="btn actionButton" onClick={this.modalToggle}>Add An Exercise</button>
           </div>
+          { this.state.newExercises.length !== 0 
+            ? 
+            <div className="row justify-content-center mb-2">
+              <label htmlFor="newWorkoutName" className="col-8 col-sm-5 col-lg-4 text-center"><strong>{this.state.workoutName}</strong></label>
+            </div>
+            : ''
+          }
           { this.state.newExercises.length !== 0 ?
           <div className="row justify-content-center mb-0">
             <div className="col-12 col-lg-11 createWorkoutTable">

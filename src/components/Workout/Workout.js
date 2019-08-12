@@ -18,7 +18,8 @@ class Workout extends React.Component {
     allWorkoutExercises : [],
     workoutMuscles : '',
     workoutModalStatus : false,
-    deleteWorkoutModalStatus : false
+    deleteWorkoutModalStatus : false,
+    lastCompleted : ''
   }
 
   openModal = () => {
@@ -47,6 +48,14 @@ class Workout extends React.Component {
     return muscleString;
   }
 
+  lastCompleted = () => {
+    if (this.props.userWorkout.lastCompleted === '') {
+      this.setState({lastCompleted : 'No Attempts'})
+    } else {
+      this.setState({lastCompleted : moment(this.props.userWorkout.lastCompleted).format('MMMM Do, YYYY')})
+    }
+  }
+
   componentDidMount() {
     exerciseData.getExercisesByWorkoutId(this.props.userWorkout.id)
       .then((response) => {
@@ -56,6 +65,7 @@ class Workout extends React.Component {
         });
         currentExercises.sort(function(a, b){return a.order - b.order});
         this.setState({workoutExercises: currentExercises})
+        this.lastCompleted()
       })
       .catch(err => console.error(err))
   }
@@ -84,13 +94,6 @@ class Workout extends React.Component {
         header : exercise.name
       }
     ))
-    const lastCompleted = () => {
-      if (this.props.userWorkout.lastCompleted === '') {
-        return 'No Attempts'
-      } else {
-        return moment(this.props.userWorkout.lastCompleted).format('MMMM Do, YYYY');
-      }
-    }
     return (
         <div className="col-11 col-md-10 col-lg-6 mb-4 mt-3 mx-auto workoutCardContainer">
           <div className="workoutContainer bg-white">
@@ -103,7 +106,7 @@ class Workout extends React.Component {
               <div className="col-5 pb-2 d-flex flex-column justify-content-center">
                 <div className="mb-1">
                   <h5><strong>Last Attempt:</strong></h5>
-                  <h6>{lastCompleted()}</h6>
+                  <h6>{this.state.lastCompleted}</h6>
                 </div>
                 <div>
                   <Link className="btn actionButton" to={submitWorkoutPath}>New Attempt</Link>

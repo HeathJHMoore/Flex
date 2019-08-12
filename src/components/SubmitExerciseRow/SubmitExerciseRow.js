@@ -13,14 +13,26 @@ class SubmitExerciseRow extends React.Component {
     isSaved : false,
     set1 : '',
     set2 : '',
-    set3 : ''
+    set3 : '',
+    arrowClassName : 'fas fa-arrow-down arrow col-1 text-right my-auto'
   }
 
   componentDidMount() {
     this.setState({exercise : this.props.exercise})
   }
 
-  collapseToggle = () => this.setState({isCollapseOpen : !this.state.isCollapseOpen, isPageLoad : false})
+  arrowContainerClass = () => {
+   if (!this.state.isCollapseOpen) {
+      this.setState({arrowClassName : "fas fa-arrow-down rotateArrowUp col-1 text-right my-auto"})
+    } else if (this.state.isCollapseOpen) {
+      this.setState({arrowClassName : "fas fa-arrow-down arrow col-1 text-right my-auto"})
+    }
+  }
+
+  collapseToggle = () => {
+    this.setState({isCollapseOpen : !this.state.isCollapseOpen, isPageLoad : false})
+    this.arrowContainerClass();
+  }
 
   saveExercisePerformance = () => {
     const set1 = document.getElementById(this.state.exercise.id + '1').value;
@@ -67,17 +79,17 @@ class SubmitExerciseRow extends React.Component {
       }
       return containerClassName
     }
-    const arrowContainerClass = () => {
-      let arrowClassName = ''
-      if (this.state.isPageLoad) {
-        arrowClassName = 'fas fa-arrow-down arrow col-1 text-right my-auto'
-      } else if (this.state.isCollapseOpen) {
-        arrowClassName = 'fas fa-arrow-down rotateArrowUp col-1 text-right my-auto'
-      } else if (!this.state.isCollapseOpen) {
-        arrowClassName = 'fas fa-arrow-down arrow col-1 text-right my-auto'
-      }
-      return arrowClassName
-    }
+    // const arrowContainerClass = () => {
+    //   let arrowClassName = ''
+    //   if (this.state.isPageLoad) {
+    //     arrowClassName = "fas fa-arrow-down arrow col-1 text-right my-auto"
+    //   } else if (this.state.isCollapseOpen) {
+    //     arrowClassName = "fas fa-arrow-down rotateArrowUp col-1 text-right my-auto"
+    //   } else if (!this.state.isCollapseOpen) {
+    //     arrowClassName = "fas fa-arrow-down arrow col-1 text-right my-auto"
+    //   }
+    //   return arrowClassName
+    // }
     // this.state.isCollapseOpen ? 'row justify-content-between hvr-underline-from-center pb-1' : 'row justify-content-between hvr-underline-from-center-away pb-1'
     return (
       <div className="row p-2 ml-1 mr-1 submitExerciseRowContainer bg-white">
@@ -85,7 +97,11 @@ class SubmitExerciseRow extends React.Component {
           <div className={exerciseRowContainerClass()}>
             <p className="col-9 my-auto exerciseName">Exercise {exercise.order}: {exercise.name}</p>
             {this.state.isSaved ? <i class="fas fa-check-square col-1 my-auto"></i> : ''}
-            <i className={arrowContainerClass()} onClick={this.collapseToggle}></i>
+            <i onClick={this.collapseToggle} className={this.state.arrowClassName}></i>
+            {/* {this.isCollapseOpen 
+              ? <i onClick={this.collapseToggle} className="fas fa-arrow-down rotateArrowUp col-1 text-right my-auto"></i>
+              : <i onClick={this.collapseToggle} className="fas fa-arrow-down arrow col-1 text-right my-auto"></i>
+              } */}
           </div>
         </div>
         <Collapse isOpen={this.state.isCollapseOpen} className="col-12">
@@ -112,7 +128,7 @@ class SubmitExerciseRow extends React.Component {
           </div>
           <div className="row mt-3">
             <div className="col-5 text-center my-auto">
-              Set 1
+              <strong>Set 1</strong>
             </div>
             <div className="col-7">
               <input id={input1} className="form-control" placeholder="ex. 8" type="number" onChange={this.set1State}></input>
@@ -120,7 +136,7 @@ class SubmitExerciseRow extends React.Component {
           </div>
           <div className="row mt-3">
             <div className="col-5 text-center my-auto">
-              Set 2
+              <strong>Set 2</strong>
             </div>
             <div className="col-7">
               <input id={input2} className="form-control" placeholder="ex. 8" type="number" onChange={this.set2State}></input>
@@ -128,7 +144,7 @@ class SubmitExerciseRow extends React.Component {
           </div>
           <div className="row mt-3">
             <div className="col-5 text-center my-auto">
-              Set 3
+              <strong>Set 3</strong>
             </div>
             <div className="col-7">
               <input id={input3} className="form-control" placeholder="ex. 8" type="number" onChange={this.set3State}></input>
@@ -139,8 +155,8 @@ class SubmitExerciseRow extends React.Component {
               this.state.set1 !== ''
               && this.state.set2 !== ''
               && this.state.set3 !== ''
-              ? <button className="btn btn-danger actionButton col-6 col-md-5"onClick={this.saveExercisePerformance}>Save</button>
-              : <button className="btn btn-danger actionButton col-6 col-md-5"onClick={this.saveExercisePerformance} disabled>Save</button>
+              ? <button className="btn actionButton col-6 col-md-5"onClick={this.saveExercisePerformance}>Save</button>
+              : <button className="btn actionButton col-6 col-md-5"onClick={this.saveExercisePerformance} disabled>Save</button>
             }
               {/* <button className="btn btn-danger actionButton col-6 col-md-5"onClick={this.saveExercisePerformance}>Save</button> */}
           </div>
