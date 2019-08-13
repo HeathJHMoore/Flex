@@ -1,0 +1,17 @@
+.searchExerciseContainer {
+  position: relative;
+}
+
+.fa-search {
+  position: absolute;
+  left: 77%;
+  top: 25%;
+}
+
+@media screen and (min-width: 768px) {
+  .fa-search {
+    position: absolute;
+    left: 64%;
+    top: 25%;
+  }
+}
