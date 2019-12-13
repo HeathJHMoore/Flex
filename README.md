@@ -8,6 +8,14 @@ In order for muscles to grow in size and strength, you must consistently expose 
 # How the application works
 Start by creating a user account on the sign-on landing page. This step is made easy by using your google acccount for authentication!
 
-After logging in, you are taken to the "My Dashboard" page where you can see all of your workout routines. You obviously won't have any routines yet so lets go ahead and make your first workout routine.
+After logging in, you are taken to the "My Dashboard" page where you can see all of your workout routines. You obviously won't have any routines yet so lets go ahead and make your first workout routine by clicking the orange "Create A New Workout" button.
 
-At the top of the My Dashboard page, click the Create New Workout button. 
+## Create your first workout
+You should now be on the Create New Workout page where you can name your workout and begin adding exercises to it. Go ahead and create a name for your first workout and then click the orange "Add An Exercise" button to start adding exercises
+
+After clicking the "Add An Exercise" button, a modal should pop up on your screen allowing you to choose an exercise as well as the weight and repetitions you can currently complete for said exercise. Click submit exercise at the bottom of the modal and you should now see your newly created exercise displayed on the screen. Complete this process for each exercise of your 
+
+
+
+
+
