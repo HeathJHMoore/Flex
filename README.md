@@ -16,7 +16,9 @@ You should now be on the Create New Workout page where you can name your workout
 After clicking the "Add An Exercise" button, a modal should pop up on your screen allowing you to choose an exercise as well as the weight and repetitions you can currently complete for said exercise. Click the "Submit Exercise" button after filling out your exercise information and you should now see your newly created exercise displayed on screen. If you want to delete this exercise, click the black "X" located to the right of the screen. If you want to update this exercise, click the black Pencil Icon also located to the right of the screen. Complete this process for each exercise of your workout routine and then click "Submit Workout". This will take you back to the My Dashboard page where you can see your newly created workout.
 
 ### -Log a workout attempt-
-Now that you've 
+Now that you've created a workout routine, you can start logging each attempt you make at completing it. FLEX will use your performance on each workout attempt to determine how much weight/how many repetitions should be added to your exercises for your next attempt. 
+
+To log a workout attempt, click the "New Attempt" button located on your workout card on the My Dashboard page. This will take you to the "Submit Workout" page where 
 
 
 
