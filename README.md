@@ -42,6 +42,12 @@ To log a workout attempt, click the "New Attempt" button located on your workout
 At this point, my application automates the implementation of progressive overload by analyzing your performance on your submitted workout and adjusting your future weights/repetitions accordingly. If you successfully complete the prescribed weight and volume for an exercise, FLEX will either add repetitions or weight for your next attempt at the workout. If you fail to meet the prescribed weight and repetitions, FLEX will keep your weight and repetitions the same for your next workout.
 
 
-### -Workout Analytics--
+### -Workout Statistics--
+After Completing several weeks worth of workouts, you can track your performance statistics on the "Workout Statisticts" page found in the navigation menu
 
+![navbar](https://raw.githubusercontent.com/HeathJHMoore/Flex/master/images/Navbar.png)
+
+On the Workout Statistics page, you select a workout and then a specific exercise within that workout to get a visual representation of your progress over time. I plan to build out the statistics on this page in the future but for now basic performance measures are available. 
+
+![Workout Statistics](https://raw.githubusercontent.com/HeathJHMoore/Flex/master/images/Workout-Statistics.png)
 
