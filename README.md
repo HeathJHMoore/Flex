@@ -1,3 +1,7 @@
+# Deployed Link Below
+
+[Flex Application](https://flex-fdc46.web.app/auth)
+
 # FLEX Workout Program Application
 FLEX is an application designed to help users easily implement the principle of progressive overload into their workout routines. All effective workout programs should implement this principle but, unfortunately, very few do. My goal for this application was to automate the implementation of progressive overload in workout routines so that myself and other gym-goers can free our minds of worrying about it
 
