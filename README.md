@@ -36,6 +36,8 @@ Now that you've created a workout routine, you can start logging each attempt yo
 
 To log a workout attempt, click the "New Attempt" button located on your workout card on the My Dashboard page. This will take you to the "Submit Workout" page where you will see each exercise in the workout displayed as a drop down menu. In each of these dropdowns, you will record the number of repetitions you completed for each set of the exercise and click the orange "Save" button to save your performance. After completing this for all exercises, click the orange "Submit Workout" button at the bottom of the page to log your entire performance to the database.
 
+![Submit Workout](https://raw.githubusercontent.com/HeathJHMoore/Flex/master/images/Submit-Workout.png) ![Submit Workout 2](https://raw.githubusercontent.com/HeathJHMoore/Flex/master/images/Submit-Workout-2.png)
+
 ### -Automating Progressive Overload--
 At this point, my application automates the implementation of progressive overload by analyzing your performance on your submitted workout and adjusting your future weights/repetitions accordingly. If you successfully complete the prescribed weight and volume for an exercise, FLEX will either add repetitions or weight for your next attempt at the workout. If you fail to meet the prescribed weight and repetitions, FLEX will keep your weight and repetitions the same for your next workout.
 
