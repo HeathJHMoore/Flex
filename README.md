@@ -7,9 +7,9 @@ FLEX is an application designed to help users easily implement the principle of 
 * HTML
 * Firebase
 
-## Deployed Link Below
+## Deployed Link
 
-[Flex Application](https://flex-fdc46.web.app/auth)
+[Check Out The Flex Application Here](https://flex-fdc46.web.app/auth)
 
 # What is Progressive Overload and Why is it important?
 In order for muscles to grow in size and strength, you must consistently expose them to incrementally higher resistance (AKA lift more weight) and volume (AKA complete more repetitions). Many people fail to realize the importance of this principle, and, as result, see a sharp plateau in their strength and size gains over time. This experience is frustrating and demoralizing as you feel like all of your hard work in the gym is being done in vain. For some, the frustration of plateuaing can lead to halting exercise altogether, which is the last thing we want to happen. So, in an effort to take the headache and effort out of incorporating progressive overload into your own workouts, I built an application that will do it for you!
